@@ -1,7 +1,8 @@
 import "./App.css";
+import { AppRoutes } from "./routes/routes";
 
 function App() {
-  return <h1>Blogging</h1>;
+  return <AppRoutes />;
 }
 
 export default App;
