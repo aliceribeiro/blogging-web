@@ -5,18 +5,18 @@ import Initial from "../pages/Initial";
 import Login from "../pages/Login";
 import Posts from "../pages/Posts";
 import SeePost from "../pages/SeePost";
-import { PATHS } from "./paths";
+import { Paths } from "./paths";
 
 export function AppRoutes() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={PATHS.BASE} element={<Initial />} />
-        <Route path={PATHS.LOGIN} element={<Login />} />
-        <Route path={PATHS.POSTS} element={<Posts />} />
-        <Route path={PATHS.SEE_POST} element={<SeePost />} />
-        <Route path={PATHS.CREATE_POST} element={<CreatePost />} />
-        <Route path={PATHS.EDIT_POST} element={<EditPost />} />
+        <Route path={Paths.BASE} element={<Initial />} />
+        <Route path={Paths.LOGIN} element={<Login />} />
+        <Route path={Paths.POSTS} element={<Posts />} />
+        <Route path={Paths.SEE_POST} element={<SeePost />} />
+        <Route path={Paths.CREATE_POST} element={<CreatePost />} />
+        <Route path={Paths.EDIT_POST} element={<EditPost />} />
       </Routes>
     </BrowserRouter>
   );

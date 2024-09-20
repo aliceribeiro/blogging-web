@@ -7,7 +7,7 @@ export enum BasePaths {
   SEE_POST = "/ver-post",
 }
 
-export const PATHS = {
+export const Paths = {
   BASE: BasePaths.BASE,
   CREATE_POST: BasePaths.CREATE_POST,
   EDIT_POST: BasePaths.EDIT_POST,

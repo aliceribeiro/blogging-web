@@ -10,7 +10,7 @@ const PageLayout = ({ children, title }: PageLayoutProps) => {
     <>
       <Navbar />
 
-      <main className="container" style={{ marginTop: "80px" }}>
+      <main className="container mt-5">
         <div className="d-flex justify-content-between">
           {title && <h3 className="link-primary">{title}</h3>}
         </div>
