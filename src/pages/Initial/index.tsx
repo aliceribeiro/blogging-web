@@ -1,5 +1,11 @@
+import PageLayout from "../../components/PageLayout";
+
 const Initial = () => {
-  return <h1>Initial - sou aluno x sou professor</h1>;
+  return (
+    <PageLayout title="Página inicial">
+      <div>conteúdo</div>
+    </PageLayout>
+  );
 };
 
 export default Initial;

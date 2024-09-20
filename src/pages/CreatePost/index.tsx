@@ -1,5 +1,11 @@
+import PageLayout from "../../components/PageLayout";
+
 const CreatePost = () => {
-  return <h1>CreatePost - cria post</h1>;
+  return (
+    <PageLayout title="Criar post">
+      <div>conteúdo</div>
+    </PageLayout>
+  );
 };
 
 export default CreatePost;

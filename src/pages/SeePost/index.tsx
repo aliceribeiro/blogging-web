@@ -1,5 +1,11 @@
+import PageLayout from "../../components/PageLayout";
+
 const SeePost = () => {
-  return <h1>SeePost - leitura de um post</h1>;
+  return (
+    <PageLayout title="Visualizar um post">
+      <div>conteúdo</div>
+    </PageLayout>
+  );
 };
 
 export default SeePost;

@@ -1,5 +1,11 @@
+import PageLayout from "../../components/PageLayout";
+
 const EditPost = () => {
-  return <h1>Editar post</h1>;
+  return (
+    <PageLayout title="Editar post">
+      <div>conteúdo</div>
+    </PageLayout>
+  );
 };
 
 export default EditPost;

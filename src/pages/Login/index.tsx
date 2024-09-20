@@ -1,5 +1,11 @@
+import PageLayout from "../../components/PageLayout";
+
 const Login = () => {
-  return <h1>Login</h1>;
+  return (
+    <PageLayout title="Login">
+      <div>conteúdo</div>
+    </PageLayout>
+  );
 };
 
 export default Login;

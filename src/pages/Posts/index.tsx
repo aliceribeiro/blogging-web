@@ -1,5 +1,11 @@
+import PageLayout from "../../components/PageLayout";
+
 const Posts = () => {
-  return <h1>Posts - lista posts</h1>;
+  return (
+    <PageLayout title="Listar posts">
+      <div>conteúdo</div>
+    </PageLayout>
+  );
 };
 
 export default Posts;
