@@ -22,7 +22,9 @@ const Initial = () => {
           <button
             className="btn btn-primary col-4 me-md-2"
             type="button"
-            onClick={() => navigate(Paths.POSTS)}
+            onClick={() => {
+              navigate(Paths.POSTS);
+            }}
           >
             Aluno
           </button>
