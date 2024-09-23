@@ -1,4 +1,4 @@
-import PageLayout from "../../components/PageLayout";
+import { PageLayout } from "../../templates/PageLayout";
 
 const Login = () => {
   return (

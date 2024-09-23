@@ -36,6 +36,8 @@ export default tseslint.config(
         { allowConstantExport: true },
       ],
       '@typescript-eslint/no-non-null-assertion': 'off',
+      '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/no-unsafe-assignment': 'warn',
       'react/react-in-jsx-scope': 'off',
       'max-len': [
         'warn',

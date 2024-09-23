@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import WelcomeIllustration from "../../assets/illustrations/Welcome.svg";
-import PageLayout from "../../components/PageLayout";
+
+import { PageLayout } from "../../templates/PageLayout";
 import { Paths } from "../../routes/paths";
+import WelcomeIllustration from "../../assets/illustrations/Welcome.svg";
 
 const Initial = () => {
   const navigate = useNavigate();

@@ -1,0 +1,6 @@
+.form-post-body {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin: 24px 12px;
+}

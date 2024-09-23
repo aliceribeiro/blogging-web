@@ -1,9 +1,15 @@
-import PageLayout from "../../components/PageLayout";
+import { PageLayout } from "../../templates/PageLayout";
+import { FormPost } from "../../components/FormPost";
+import { usePermission } from "../../hooks/usePermission";
 
 const Posts = () => {
+  // TODO: Get proper user profile
+  const { hasPermission } = usePermission('teacher');
+
   return (
-    <PageLayout title="Listar posts">
-      <div>conteúdo</div>
+    <PageLayout title="Linha do tempo">
+      {hasPermission && <FormPost />}
+      <div>Conteúdo</div>
     </PageLayout>
   );
 };
