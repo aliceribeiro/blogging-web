@@ -5,16 +5,16 @@ import { Typography, TypographyVariant } from "../../components/Typography";
 
 type PageLayoutProps = PropsWithChildren<{
   title?: string;
-  isPrivateRouter?: boolean;
+  hasNavbar?: boolean;
 }>;
 
 export const PageLayout = ({
   children,
   title,
-  isPrivateRouter = true,
+  hasNavbar = true,
 }: PageLayoutProps) => (
   <>
-    {isPrivateRouter && <Navbar />}
+    {hasNavbar && <Navbar />}
     <main className="container mt-5">
       <header className="d-flex justify-content-between">
         {title && (
