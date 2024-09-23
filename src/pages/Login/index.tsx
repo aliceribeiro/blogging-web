@@ -22,7 +22,7 @@ const Login = () => {
   };
 
   return (
-    <PageLayout isPrivateRouter={false}>
+    <PageLayout hasNavbar={false}>
       <styled.Container>
         <styled.FormContainer>
           <img src={bloggingLogo} alt="Blogging logo" />
