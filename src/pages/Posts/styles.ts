@@ -35,6 +35,7 @@ const Description = styled.span`
   overflow: hidden;
   text-overflow: ellipsis;
   width: 80%;
+  margin-bottom: 15px;
 `;
 
 export default {

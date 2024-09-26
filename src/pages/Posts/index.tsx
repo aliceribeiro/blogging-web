@@ -7,41 +7,70 @@ import { useNavigate } from "react-router-dom";
 import Input from "../../components/Input";
 import { Paths } from "../../routes/paths";
 import { Button } from "../../components/Button";
+import api from "../../axios/api";
+import IPost from "../../interfaces/Post";
 
 const Posts = () => {
   // TODO: Get proper user profile
   //const { hasPermission } = usePermission("teacher");
   const { hasPermission } = usePermission("student");
   const navigate = useNavigate();
-  const [posts, setPosts] = useState<Record<string, any>>([]);
+  const [posts, setPosts] = useState<IPost[]>([]);
   const [filter, setFilter] = useState("");
-
+ 
+  // get all posts
   useEffect(() => {
     //Mock
-    setPosts([
-      {
-        id: "1",
-        title: "Post 1",
-        content:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum.",
-        createdAt: "2024-09-22T00:00:00.000Z",
-      },
-      {
-        id: "2",
-        title: "Post 2",
-        content:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum.",
-        createdAt: "2024-09-22T00:00:00.000Z",
-      },
-      {
-        id: "3",
-        title: "Post 3",
-        content:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum.",
-        createdAt: "2024-09-22T00:00:00.000Z",
-      },
-    ]);
+    // setPosts([
+    //   {
+    //     id: "1",
+    //     title: "Post 1",
+    //     content:
+    //       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum.",
+    //     createdAt: new Date(),
+    //     updatedAt: new Date(),
+    //     author:"Lorem ipsum"
+    //   },
+    //   {
+    //     id: "2",
+    //     title: "Post 2",
+    //     content:
+    //       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum.",
+    //     createdAt: new Date(),
+    //     updatedAt: new Date(),
+    //     author:"Lorem ipsum"
+    //   },
+    //   {
+    //     id: "3",
+    //     title: "Post 3",
+    //     content:
+    //       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget ligula eu lectus lobortis condimentum.",
+    //     createdAt: new Date(),
+    //     updatedAt: new Date(),
+    //     author:"Lorem ipsum"
+    //   },
+    // ]);
+
+    setFilter("")
+    api.get('/posts')
+      .then(response => {
+        setPosts(response.data.data)
+      })
+      .catch(error => {
+        console.error('Error get posts: ', error)
+      })
   }, []);
+
+  // search posts
+  useEffect(() => {
+    api.get(`/posts/search?keyword=${filter}`)
+      .then(response => {
+        setPosts(response.data.data)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }, [filter])
 
   const handleDelete = (id: string) => {
     // TODO: Integração com o delete
@@ -59,8 +88,7 @@ const Posts = () => {
   };
 
   const handleGoToPostDetails = (id: string) => {
-    navigate(Paths.POST_DETAILS);
-    console.log(id);
+    navigate(`${Paths.POST_DETAILS}`, {state:{id: id}});
   };
 
   return (
@@ -79,10 +107,13 @@ const Posts = () => {
           </styled.Search>
           <div className=" mb-4 ">{hasPermission && <FormPost />}</div>
         </div>
-        {posts.map((post: string | any) => (
-          <div key={post.id} className="mb-3 custom-collapse">
+        {posts.length == 0 &&
+          <p>Nenhum post encontrado</p>
+        }
+        {posts.map((post: IPost, i: number) => (
+          <div key={i} className="mb-3 custom-collapse">
             <div className="card">
-              <div
+              <div 
                 className="card-header"
                 onClick={() => handleGoToPostDetails(post.id)}
               >
@@ -93,6 +124,7 @@ const Posts = () => {
                   <styled.CardBody>
                     <div onClick={() => handleGoToPostDetails(post.id)}>
                       <styled.Description>{post.content}</styled.Description>
+                      <b>Author: {post.author}</b>
                     </div>
                     {/* TODO: Verificar validação */}
                     {hasPermission ? (
