@@ -3,8 +3,8 @@ import { createBrowserRouter } from "react-router-dom";
 import Initial from "../pages/Initial";
 import Login from "../pages/Login";
 import PageNotFound from "../pages/PageNotFound";
-import Posts from "../pages/Posts";
 import PostDetails from "../pages/PostDetails";
+import Timeline from "../pages/Timeline";
 import { ErrorBoundary } from "../pages/ErrorBoundary";
 import { Paths } from "./paths";
 
@@ -23,7 +23,7 @@ const router = createBrowserRouter(
     },
     {
       path: Paths.POSTS,
-      element: <Posts />,
+      element: <Timeline />,
       errorElement: <ErrorBoundary />,
     },
     {

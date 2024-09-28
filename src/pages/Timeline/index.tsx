@@ -14,8 +14,7 @@ import { useSearchPost } from "../../hooks/useSearchPost";
 
 import styled from "./styles";
 
-// Rename: timeline is better
-const Posts = () => {
+const Timeline = () => {
   const { getListPosts, postsList, requestStatus } = useListPosts()
   // TODO: Get proper user profile
   // const { hasPermission } = usePermission("teacher");
@@ -65,4 +64,4 @@ const Posts = () => {
   );
 };
 
-export default Posts;
+export default Timeline;
