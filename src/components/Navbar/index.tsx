@@ -1,7 +1,10 @@
 import { useNavigate } from "react-router-dom";
+
+import { Button } from "../../components/Button";
 import { Paths } from "../../routes/paths";
 import bloggingLogo from "/blogging.svg";
 
+// TODO: Checar se o usuário está logando e adicionar botão de logout
 export const Navbar = () => {
   const navigate = useNavigate();
 
@@ -17,21 +20,12 @@ export const Navbar = () => {
           href={Paths.BASE}
           onClick={handleClick}
         >
-          <img src={bloggingLogo} alt="Blogging logo" />
+          <img src={bloggingLogo} aria-hidden />
           <h4 className="m-0">Blogging</h4>
         </a>
-
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon" />
-        </button>
+        <Button onClick={() => navigate(Paths.LOGIN)} srLabel="Entrar na sua conta" variant="secondary">
+          Entrar
+        </Button>
       </div>
     </nav>
   );
