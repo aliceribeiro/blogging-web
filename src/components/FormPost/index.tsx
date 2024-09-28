@@ -1,6 +1,7 @@
 // TODO: Ajustar essa regra
 /* eslint-disable @typescript-eslint/no-misused-promises */
 
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
@@ -14,6 +15,7 @@ import { FormTextField } from "../Form/FormTextField";
 import { Modal } from "../Modal";
 import { useCreatePost } from "../../hooks/useCreatePost";
 import { FormPostSchema, PostFormFields, PostFormValues } from "./FormPost.schema";
+import { Paths } from "../../routes/paths";
 
 import "./styles.css"
 
@@ -25,6 +27,7 @@ const FORM_DEFAULT_VALUES = {
 };
 
 export const FormPost = () => {
+    const navigate = useNavigate();
     const methods = useForm<PostFormValues>({
         defaultValues: FORM_DEFAULT_VALUES,
         resolver: yupResolver(FormPostSchema)
@@ -39,8 +42,12 @@ export const FormPost = () => {
         modal.toggle();
     };
 
-    // TODO: Além de fechar o modal tem que recarregar a página de listagem
-    const { loading, savePost } = useCreatePost({ onSuccess: handleToggleModal });
+    const handleRequestSuccess = () => {
+        handleToggleModal();
+        navigate(Paths.BASE, { replace: true });
+    };
+
+    const { loading, savePost } = useCreatePost({ onSuccess: handleRequestSuccess });
 
     const handleReset = (e: { preventDefault: () => void; }) => {
         e.preventDefault();

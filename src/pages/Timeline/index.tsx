@@ -4,13 +4,11 @@ import { useEffect, useState } from "react";
 
 import { CardPost } from "../../components/CardPost";
 import { EmptyState } from "../../components/EmptyState";
-import { FormPost } from "../../components/FormPost";
 import { ListWrapper } from "../../templates/ListWrapper";
 import { FormSearch } from "../../components/Form/FormSearch";
 import { PageLayout } from "../../templates/PageLayout";
 import { SearchFormValues } from "../../components/Form/FormSearch/FormSearchSchema";
 import { useListPosts } from "../../hooks/useListPosts";
-import { usePermission } from "../../hooks/usePermission";
 import { useSearchPost } from "../../hooks/useSearchPost";
 
 import styled from "./styles";
@@ -19,8 +17,6 @@ const Timeline = () => {
   const [currentList, setCurrentList] = useState<Array<PostResponse>>([])
 
   const { getListPosts, postsList, requestStatus } = useListPosts()
-  // TODO: Get proper user profile
-  const { hasPermission } = usePermission('student');
   const { loading, searchPost, posts } = useSearchPost();
 
   const pageState = loading ? 'loading' : requestStatus;
@@ -54,12 +50,9 @@ const Timeline = () => {
           srLabel="Campo para buscar uma publicação"
           disableButton={loading}
         />
-        <div className="d-flex align-items-center justify-content-between">
-          <div className="mb-4">{hasPermission && <FormPost />}</div>
-        </div>
         <ListWrapper onTryAgain={() => void getListPosts()} status={pageState}>
           {!currentList.length ?
-            <EmptyState description="Ainda não há nenhuma publicação" />
+            <EmptyState description="Que tal criar uma publicação com o tema que estava buscando?" />
             : (
               <section>
                 {currentList.map((post, index) => (

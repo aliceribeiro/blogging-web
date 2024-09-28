@@ -1,8 +1,10 @@
 import type { PropsWithChildren } from "react";
 
+import { FormPost } from "../../components/FormPost";
 import { Navbar } from "../../components/Navbar";
 import { Snackbar } from "../../components/Snackbar";
 import { Typography, TypographyVariant } from "../../components/Typography";
+import { usePermission } from "../../hooks/usePermission";
 import { useSnackbar } from "../../hooks/useSnackbar";
 
 type PageLayoutProps = PropsWithChildren<{
@@ -15,6 +17,8 @@ export const PageLayout = ({
   title,
   showNavbar = false,
 }: PageLayoutProps) => {
+  // TODO: Get proper user profile
+  const { hasPermission } = usePermission('student');
   const snackbar = useSnackbar();
 
   return (
@@ -27,6 +31,7 @@ export const PageLayout = ({
               {title}
             </Typography>
           )}
+          {hasPermission && <FormPost />}
         </header>
         <section className="row justify-content-center">{children}</section>
       </main>
@@ -38,3 +43,4 @@ export const PageLayout = ({
     </>
   );
 };
+
