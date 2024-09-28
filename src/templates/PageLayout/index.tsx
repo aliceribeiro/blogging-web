@@ -5,18 +5,16 @@ import { Typography, TypographyVariant } from "../../components/Typography";
 
 type PageLayoutProps = PropsWithChildren<{
   title?: string;
-  hasNavbar?: boolean;
   showNavbar?: boolean;
 }>;
 
-// TODO: Boolean default values is always false
 export const PageLayout = ({
   children,
   title,
-  hasNavbar = true,
+  showNavbar = false,
 }: PageLayoutProps) => (
   <>
-    {hasNavbar && <Navbar />}
+    {showNavbar && <Navbar />}
     <main className="container mt-5">
       <header className="d-flex justify-content-between">
         {title && (

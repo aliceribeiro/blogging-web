@@ -33,7 +33,7 @@ const Timeline = () => {
   };
 
   return (
-    <PageLayout title="Linha do tempo">
+    <PageLayout showNavbar title="Linha do tempo">
       <styled.Container>
         <FormSearch
           id="search-post"

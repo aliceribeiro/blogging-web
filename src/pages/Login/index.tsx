@@ -6,7 +6,7 @@ import bloggingLogo from "/blogging.svg";
 import styled from "./styles";
 
 const Login = () => (
-  <PageLayout hasNavbar={false}>
+  <PageLayout>
     <styled.Container>
       <styled.FormContainer>
         <img src={bloggingLogo} aria-hidden />
