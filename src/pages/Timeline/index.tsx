@@ -6,7 +6,6 @@ import { FormPost } from "../../components/FormPost";
 import { ListWrapper } from "../../templates/ListWrapper";
 import { FormSearch } from "../../components/Form/FormSearch";
 import { PageLayout } from "../../templates/PageLayout";
-import { Snackbar } from "../../components/Snackbar";
 import { SearchFormValues } from "../../components/Form/FormSearch/FormSearchSchema";
 import { useListPosts } from "../../hooks/useListPosts";
 import { usePermission } from "../../hooks/usePermission";
@@ -20,7 +19,7 @@ const Timeline = () => {
   // const { hasPermission } = usePermission("teacher");
   const { hasPermission } = usePermission("student");
   // TODO: Add loading e o resultado né
-  const { error, searchPost } = useSearchPost();
+  const { searchPost } = useSearchPost();
 
   useEffect(() => {
     void getListPosts()
@@ -54,12 +53,6 @@ const Timeline = () => {
           )}
         </ListWrapper>
       </styled.Container>
-      <Snackbar
-        closable
-        message="Ops, ocorreu um erro! Por favor, tente novamente mais tarde."
-        open={error}
-        variant="error"
-      />
     </PageLayout >
   );
 };

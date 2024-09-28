@@ -4,7 +4,6 @@ import { Modal as BootstrapModal } from 'bootstrap';
 
 import { Button } from "../Button";
 import { Modal } from "../Modal";
-import { Snackbar } from "../Snackbar";
 import { Typography, TypographyVariant } from "../Typography";
 import { useDeletePost } from "../../hooks/useDeletePost";
 
@@ -15,8 +14,7 @@ type DeletePostTemplateProps = {
 export const DeletePostTemplate = ({ postId }: DeletePostTemplateProps) => {
     const modalId = useMemo(() => (`modal-delete-post-${postId}`), [postId])
 
-    // TODO: E quando der sucesso?
-    const { error, loading, deletePost } = useDeletePost(postId)
+    const { loading, deletePost } = useDeletePost(postId)
 
     const handleToggleModal = () => {
         const modal = BootstrapModal.getOrCreateInstance(document.getElementById(modalId)!);
@@ -51,12 +49,6 @@ export const DeletePostTemplate = ({ postId }: DeletePostTemplateProps) => {
                     Atenção, pois essa ação não poderá ser desfeita.
                 </Typography>
             </Modal>
-            <Snackbar
-                closable
-                message="Não foi possível excluir a publicação. Por favor, tente novamente mais tarde."
-                open={error}
-                variant="error"
-            />
         </>
     );
 };

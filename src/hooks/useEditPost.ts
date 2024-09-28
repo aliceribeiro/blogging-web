@@ -3,25 +3,35 @@ import type { PostPayload } from "../api";
 import { useState } from 'react';
 
 import { putPost } from "../api";
+import { useSnackbar } from "./useSnackbar";
 
 export const useEditPost = (id: string | number) => {
-    const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
 
+    const { onShowSnackbar } = useSnackbar();
+
     const editPost = async (data: PostPayload) => {
-        setError(false);
         setLoading(true);
         try {
             await putPost(id, data)
+
+            onShowSnackbar({
+                closable: true,
+                message: 'Publicação alterada com sucesso.',
+                variant: 'success'
+            });
         } catch {
-            setError(true);
+            onShowSnackbar({
+                closable: true,
+                message: 'Não foi possível salvar a edição. Por favor, tente novamente mais tarde.',
+                variant: 'error'
+            });
         } finally {
             setLoading(false);
         };
     };
 
     return {
-        error,
         loading,
         editPost,
     };

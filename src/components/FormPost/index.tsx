@@ -12,7 +12,6 @@ import { FormSubmitButton } from "../Form/FormSubmitButton";
 import { FormTextArea } from "../Form/FormTextArea";
 import { FormTextField } from "../Form/FormTextField";
 import { Modal } from "../Modal";
-import { Snackbar } from "../../components/Snackbar";
 import { useCreatePost } from "../../hooks/useCreatePost";
 import { FormPostSchema, PostFormFields, PostFormValues } from "./FormPost.schema";
 
@@ -40,8 +39,8 @@ export const FormPost = () => {
         modal.toggle();
     };
 
-    // TODO: Além de fechar o modal tem que recarregar a página de listagem e exibir mensagem de suceso
-    const { error, loading, savePost } = useCreatePost({ onSuccess: handleToggleModal });
+    // TODO: Além de fechar o modal tem que recarregar a página de listagem
+    const { loading, savePost } = useCreatePost({ onSuccess: handleToggleModal });
 
     const handleReset = (e: { preventDefault: () => void; }) => {
         e.preventDefault();
@@ -99,12 +98,6 @@ export const FormPost = () => {
                     </section>
                 </Modal>
             </Form>
-            <Snackbar
-                closable
-                message="Não foi possível salvar a publicação. Por favor, tente novamente mais tarde."
-                open={error}
-                variant="error"
-            />
         </>
     );
 };

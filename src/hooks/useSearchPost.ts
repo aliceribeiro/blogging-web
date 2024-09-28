@@ -3,8 +3,11 @@ import type { PostResponse } from "../api";
 import { useState } from 'react';
 
 import { getPostByKeyWord } from "../api";
+import { useSnackbar } from "./useSnackbar";
 
 export const useSearchPost = () => {
+    const { onShowSnackbar } = useSnackbar();
+
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
     const [posts, setPosts] = useState<Array<PostResponse>>([]);
@@ -16,7 +19,11 @@ export const useSearchPost = () => {
             const { data } = await getPostByKeyWord(word);
             setPosts(data);
         } catch {
-            setError(true);
+            onShowSnackbar({
+                closable: true,
+                message: 'Ocorreu um erro. Por favor, tente novamente mais tarde.',
+                variant: 'error'
+            });
         } finally {
             setLoading(false);
         };

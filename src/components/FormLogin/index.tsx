@@ -1,5 +1,6 @@
 // TODO: Ajustar essa regra
 /* eslint-disable @typescript-eslint/no-misused-promises */
+
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -9,7 +10,6 @@ import { Form } from "../../components/Form";
 import { FormPassword } from "../../components/Form/FormPassword";
 import { FormSubmitButton } from "../../components/Form/FormSubmitButton";
 import { FormTextField } from "../../components/Form/FormTextField";
-import { Snackbar } from "../Snackbar";
 import { useLogin } from "../../hooks/useLogin";
 import { FormLoginSchema, LoginFormFields, LoginFormValues } from "./LoginFormSchema";
 import { Paths } from "../../routes/paths";
@@ -23,7 +23,7 @@ const FORM_DEFAULT_VALUES = {
 };
 
 export const FormLogin = () => {
-    const { error, loading, loginUser } = useLogin();
+    const { loading, loginUser } = useLogin();
     const navigate = useNavigate();
     const methods = useForm<LoginFormValues>({
         defaultValues: FORM_DEFAULT_VALUES,
@@ -65,12 +65,6 @@ export const FormLogin = () => {
                     </Button>
                 </div>
             </Form>
-            <Snackbar
-                closable
-                message="Não foi possível excluir a publicação. Por favor, tente novamente mais tarde."
-                open={error}
-                variant="error"
-            />
         </>
     );
 

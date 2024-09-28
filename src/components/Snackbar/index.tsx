@@ -1,11 +1,7 @@
-import { useEffect } from "react";
-import { Toast as SnackbarBootstrap } from 'bootstrap';
-
-type SnackbarProps = {
-    closable: boolean;
-    message: string;
-    open?: boolean;
-    variant: 'info' | 'error' | 'success';
+export type SnackbarProps = {
+    closable?: boolean;
+    message?: string;
+    variant?: 'info' | 'error' | 'success';
 }
 
 const getVariant = (variant: SnackbarProps['variant']): string => {
@@ -21,17 +17,8 @@ const getVariant = (variant: SnackbarProps['variant']): string => {
     };
 };
 
-export const Snackbar = ({ closable = false, message, open = false, variant }: SnackbarProps) => {
+export const Snackbar = ({ closable = false, message, variant = 'info' }: SnackbarProps) => {
     const className = getVariant(variant);
-
-    const snackbarElement = document.getElementById('snackbar');
-    const snackbar = SnackbarBootstrap.getOrCreateInstance(snackbarElement!);
-
-    useEffect(() => {
-        if (open) {
-            snackbar.show();
-        }
-    }, [open, snackbar])
 
     return (
         <div id="snackbar" className={`toast align-items-center border-0 ${className}`} role="alert" aria-live="assertive" aria-atomic="true">

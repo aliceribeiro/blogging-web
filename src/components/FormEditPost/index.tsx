@@ -12,7 +12,6 @@ import { FormSubmitButton } from "../Form/FormSubmitButton";
 import { FormTextArea } from "../Form/FormTextArea";
 import { FormTextField } from "../Form/FormTextField";
 import { Modal } from "../Modal";
-import { Snackbar } from "../Snackbar";
 import { useEditPost } from "../../hooks/useEditPost";
 import { FormEditPostSchema, EditPostFormFields, EditPostFormValues } from "./FormEditPost.schema";
 
@@ -28,7 +27,7 @@ export const FormEditPost = ({ defaultValues, postId }: FormEditPostProps) => {
     const modalId = useMemo(() => (`modal-edit-post-${postId}`), [postId])
 
     // TODO: Sucesso
-    const { error, editPost, loading } = useEditPost(postId)
+    const { editPost, loading } = useEditPost(postId)
     const methods = useForm<EditPostFormValues>({
         defaultValues,
         resolver: yupResolver(FormEditPostSchema)
@@ -91,12 +90,6 @@ export const FormEditPost = ({ defaultValues, postId }: FormEditPostProps) => {
                     />
                 </section>
             </Modal>
-            <Snackbar
-                closable
-                message="Não foi possível salvar a edição. Por favor, tente novamente mais tarde."
-                open={error}
-                variant="error"
-            />
         </>
     );
 };

@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { useSnackbar } from "./useSnackbar";
 import { Paths } from "../routes/paths";
 
 type LoginPayload = {
@@ -9,13 +10,12 @@ type LoginPayload = {
 };
 
 export const useLogin = () => {
-    const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
+    const { onShowSnackbar } = useSnackbar();
 
     const loginUser = async ({ username, password }: LoginPayload) => {
-        setError(false);
         setLoading(true);
         try {
             // TODO: Send data to API and save user authorization 
@@ -26,16 +26,20 @@ export const useLogin = () => {
                 }, 500);
             });
 
-            navigate(Paths.POSTS);
+            // TODO: Salvar info do usuário logado
+            navigate(Paths.BASE);
         } catch {
-            setError(true);
+            onShowSnackbar({
+                closable: true,
+                message: '"Não foi possível fazer login. Por favor, tente novamente mais tarde.',
+                variant: 'error'
+            });
         } finally {
             setLoading(false);
         };
     };
 
     return {
-        error,
         loading,
         loginUser,
     };

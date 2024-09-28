@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useState } from "react";
+
+import { useSnackbar } from "./useSnackbar";
 
 type SavePostPayload = {
     description: string;
@@ -7,14 +9,14 @@ type SavePostPayload = {
 
 type UseCreatePostParams = {
     onSuccess: () => void;
-}
+};
 
 export const useCreatePost = ({ onSuccess }: UseCreatePostParams) => {
-    const [error, setError] = useState(false);
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
+
+    const { onShowSnackbar } = useSnackbar();
 
     const savePost = async ({ description, title }: SavePostPayload) => {
-        setError(false);
         setLoading(true);
         try {
             // TODO: Send data to API
@@ -25,17 +27,25 @@ export const useCreatePost = ({ onSuccess }: UseCreatePostParams) => {
                 }, 500);
             });
 
+            onShowSnackbar({
+                closable: true,
+                message: 'Publicação criada com sucesso.',
+                variant: 'success'
+            });
+
             onSuccess();
         } catch {
-            setError(true);
-            return
+            onShowSnackbar({
+                closable: true,
+                message: 'Não foi possível salvar a publicação. Por favor, tente novamente mais tarde.',
+                variant: 'error'
+            });
         } finally {
             setLoading(false)
         }
     };
 
     return {
-        error,
         loading,
         savePost,
     };
