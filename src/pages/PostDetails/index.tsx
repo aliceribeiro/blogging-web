@@ -15,7 +15,6 @@ const PostDetails = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // TODO: Pegar da URL e nao do estado da rota
   // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
   const id = String(location?.state?.id);
 
@@ -35,10 +34,8 @@ const PostDetails = () => {
         </Button>
       </styled.Flex>
       <styled.Container>
-        <Avatar src={bloggingLogo} alt="logo" name="" size={100} />
-
+        <Avatar src={bloggingLogo} size={100} aria-hidden />
         <styled.Title>{post?.title}</styled.Title>
-
         <p>{post?.content}</p>
         <div>
           <styled.CreationDate>Data de criação:</styled.CreationDate>

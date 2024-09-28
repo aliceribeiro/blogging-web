@@ -5,7 +5,6 @@ import bloggingLogo from "/blogging.svg";
 export const Navbar = () => {
   const navigate = useNavigate();
 
-  // TODO: redirecionar pra página inicial e deslogar o usuário
   const handleClick = () => {
     return navigate(Paths.BASE, { replace: true });
   };

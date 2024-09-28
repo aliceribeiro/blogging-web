@@ -15,7 +15,6 @@ enum TypographyVariantEnum {
     'title-bold' = 'title-bold',
 }
 
-// TODO: Improve use of variant type
 export const TypographyVariant = {
     'paragraph-xsmall-regular': TypographyVariantEnum['paragraph-xsmall-regular'],
     'paragraph-sm-regular': TypographyVariantEnum['paragraph-sm-regular'],

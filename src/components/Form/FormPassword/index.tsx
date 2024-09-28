@@ -7,7 +7,6 @@ type FormPasswordProps = {
     srLabel: string;
 }
 
-// TODO: Add eye button to show the password
 export const FormPassword = ({ fieldName, label, placeholder = '', srLabel }: FormPasswordProps) => {
     const {
         field: { onChange, value },
