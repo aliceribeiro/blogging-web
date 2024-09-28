@@ -10,10 +10,12 @@ type UseCreatePostParams = {
 }
 
 export const useCreatePost = ({ onSuccess }: UseCreatePostParams) => {
+    const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false)
 
     const savePost = async ({ description, title }: SavePostPayload) => {
-        setLoading(true)
+        setError(false);
+        setLoading(true);
         try {
             // TODO: Send data to API
             await new Promise((resolve) => {
@@ -25,7 +27,7 @@ export const useCreatePost = ({ onSuccess }: UseCreatePostParams) => {
 
             onSuccess();
         } catch {
-            // TODO: Error handler
+            setError(true);
             return
         } finally {
             setLoading(false)
@@ -33,6 +35,7 @@ export const useCreatePost = ({ onSuccess }: UseCreatePostParams) => {
     };
 
     return {
+        error,
         loading,
         savePost,
     };

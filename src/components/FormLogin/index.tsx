@@ -9,6 +9,7 @@ import { Form } from "../../components/Form";
 import { FormPassword } from "../../components/Form/FormPassword";
 import { FormSubmitButton } from "../../components/Form/FormSubmitButton";
 import { FormTextField } from "../../components/Form/FormTextField";
+import { Snackbar } from "../Snackbar";
 import { useLogin } from "../../hooks/useLogin";
 import { FormLoginSchema, LoginFormFields, LoginFormValues } from "./LoginFormSchema";
 import { Paths } from "../../routes/paths";
@@ -23,7 +24,7 @@ const FORM_DEFAULT_VALUES = {
 
 // TODO: Como uma pessoa pode criar a conta?
 export const FormLogin = () => {
-    const { loading, loginUser } = useLogin();
+    const { error, loading, loginUser } = useLogin();
     const navigate = useNavigate();
     const methods = useForm<LoginFormValues>({
         defaultValues: FORM_DEFAULT_VALUES,
@@ -37,32 +38,41 @@ export const FormLogin = () => {
     };
 
     return (
-        <Form id={FORM_ID} methods={methods} onSubmit={handleSubmit(handleSubmitLogin)}>
-            <FormTextField
-                fieldName={LoginFormFields.username}
-                label="Usuário"
-                placeholder="Digite o nome de usuário"
-                srLabel="Campo para inserir o nome do usuário"
+        <>
+            <Form id={FORM_ID} methods={methods} onSubmit={handleSubmit(handleSubmitLogin)}>
+                <FormTextField
+                    fieldName={LoginFormFields.username}
+                    label="Usuário"
+                    placeholder="Digite o nome de usuário"
+                    srLabel="Campo para inserir o nome do usuário"
+                />
+                <FormPassword
+                    fieldName={LoginFormFields.password}
+                    label="Senha"
+                    placeholder="Digite a sua senha"
+                    srLabel="Campo para inserir a senha do usuário"
+                />
+                <div className="form-login-actions-container">
+                    <FormSubmitButton
+                        disabled={loading}
+                        formId={FORM_ID}
+                        fullWidth
+                        onSubmit={handleSubmit(handleSubmitLogin)}
+                    >
+                        Entrar
+                    </FormSubmitButton>
+                    <Button fullWidth onClick={() => navigate(Paths.BASE)} variant="tertiary">
+                        Voltar
+                    </Button>
+                </div>
+            </Form>
+            <Snackbar
+                closable
+                message="Não foi possível excluir a publicação. Por favor, tente novamente mais tarde."
+                open={error}
+                variant="error"
             />
-            <FormPassword
-                fieldName={LoginFormFields.password}
-                label="Senha"
-                placeholder="Digite a sua senha"
-                srLabel="Campo para inserir a senha do usuário"
-            />
-            <div className="form-login-actions-container">
-                <FormSubmitButton
-                    disabled={loading}
-                    formId={FORM_ID}
-                    fullWidth
-                    onSubmit={handleSubmit(handleSubmitLogin)}
-                >
-                    Entrar
-                </FormSubmitButton>
-                <Button fullWidth onClick={() => navigate(Paths.BASE)} variant="tertiary">
-                    Voltar
-                </Button>
-            </div>
-        </Form>
-    )
-}
+        </>
+    );
+
+};

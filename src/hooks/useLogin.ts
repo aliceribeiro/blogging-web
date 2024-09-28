@@ -9,12 +9,14 @@ type LoginPayload = {
 };
 
 export const useLogin = () => {
-    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
 
     const loginUser = async ({ username, password }: LoginPayload) => {
-        setLoading(true)
+        setError(false);
+        setLoading(true);
         try {
             // TODO: Send data to API and save user authorization 
             await new Promise((resolve) => {
@@ -24,16 +26,16 @@ export const useLogin = () => {
                 }, 500);
             });
 
-            navigate(Paths.POSTS)
+            navigate(Paths.POSTS);
         } catch {
-            // TODO: Error handler
-            return
+            setError(true);
         } finally {
-            setLoading(false)
-        }
+            setLoading(false);
+        };
     };
 
     return {
+        error,
         loading,
         loginUser,
     };

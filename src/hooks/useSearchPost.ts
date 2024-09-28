@@ -5,24 +5,27 @@ import { useState } from 'react';
 import { getPostByKeyWord } from "../api";
 
 export const useSearchPost = () => {
+    const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
-    const [post, setPost] = useState<Array<PostResponse>>([])
+    const [posts, setPosts] = useState<Array<PostResponse>>([]);
 
     const searchPost = async (word: string) => {
+        setError(false);
         setLoading(true);
         try {
             const { data } = await getPostByKeyWord(word);
-            setPost(data)
+            setPosts(data);
         } catch {
-            // TODO: Add snackbar
+            setError(true);
         } finally {
             setLoading(false);
         };
     };
 
     return {
+        error,
         loading,
-        post,
+        posts,
         searchPost,
     };
 };

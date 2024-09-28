@@ -5,21 +5,23 @@ import { useState } from 'react';
 import { putPost } from "../api";
 
 export const useEditPost = (id: string | number) => {
+    const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
 
     const editPost = async (data: PostPayload) => {
+        setError(false);
         setLoading(true);
         try {
             await putPost(id, data)
         } catch {
-            // TODO: Show snackbar
-            return;
+            setError(true);
         } finally {
             setLoading(false);
         };
     };
 
     return {
+        error,
         loading,
         editPost,
     };
