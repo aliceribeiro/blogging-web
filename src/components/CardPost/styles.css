@@ -1,0 +1,19 @@
+.post-card-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.post-card-content {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 80%;
+    margin-bottom: 15px;
+}
+
+.post-card-title {
+    color: #0a5ed7;
+}
