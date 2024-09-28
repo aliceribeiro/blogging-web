@@ -11,6 +11,9 @@ export type PostResponse = {
 
 const BASE_URL = '/posts';
 
+export const deletePost = async (id: string | number): Promise<{ data: any }> =>
+    await api.delete(`${BASE_URL}/${id}`);
+
 export const getPostById = async (id: string | number): Promise<{ data: PostResponse }> =>
     await api.get(`${BASE_URL}/${id}`);
 

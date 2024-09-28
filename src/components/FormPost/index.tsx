@@ -54,7 +54,7 @@ export const FormPost = () => {
         <>
             <Button onClick={handleToggleModal} variant="primary">
                 Criar nova publicação
-            </Button >
+            </Button>
             <Form id={FORM_ID} methods={methods} onSubmit={handleSubmit(handleSavePost)}>
                 <Modal
                     id={MODAL_ID}
