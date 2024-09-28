@@ -34,6 +34,11 @@ type TypographyProps = PropsWithChildren<{
     variant?: TypographyVariantEnum
 }>
 
-export const Typography = ({ children, className = '', component = 'p', variant = TypographyVariant['paragraph-lg-regular'] }: TypographyProps) => (
+export const Typography = ({
+    children,
+    className = '',
+    component = 'p',
+    variant = TypographyVariant['paragraph-lg-regular']
+}: TypographyProps) => (
     <p role={component} className={`${variant} text-default-style ${className}`}>{children}</p>
 )

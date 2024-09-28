@@ -21,7 +21,13 @@ export const Snackbar = ({ closable = false, message, variant = 'info' }: Snackb
     const className = getVariant(variant);
 
     return (
-        <div id="snackbar" className={`toast align-items-center border-0 ${className}`} role="alert" aria-live="assertive" aria-atomic="true">
+        <div
+            id="snackbar"
+            className={`toast align-items-center border-0 ${className}`}
+            role="alert"
+            aria-live="assertive"
+            aria-atomic="true"
+        >
             <div className="d-flex">
                 <div className="toast-body">
                     {message}

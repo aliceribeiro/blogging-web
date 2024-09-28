@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import Avatar from "../../components/Avatar";
+import { Avatar } from "../../components/Avatar";
 import { Button } from "../../components/Button";
 import { ListWrapper } from "../../templates/ListWrapper";
 import { PageLayout } from "../../templates/PageLayout";
@@ -35,7 +35,7 @@ const PostDetails = () => {
       </styled.Flex>
       <ListWrapper onTryAgain={() => void getPostDetails()} status={requestStatus}>
         <styled.Container>
-          <Avatar src={bloggingLogo} size={100} aria-hidden />
+          <Avatar src={bloggingLogo} />
           <styled.Title>{post?.title}</styled.Title>
           <p>{post?.content}</p>
           <div>
