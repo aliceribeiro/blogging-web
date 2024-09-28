@@ -4,29 +4,26 @@ import { useState } from 'react';
 
 import { getPosts } from "../api";
 
+type RequestStatus = 'idle' | 'error' | 'loading' | 'success';
+
 export const useListPosts = () => {
-    const [error, setError] = useState(false);
-    const [loading, setLoading] = useState(false);
     const [postsList, setPostsList] = useState<Array<PostResponse>>([])
+    const [requestStatus, setRequestStatus] = useState<RequestStatus>('idle')
 
     const getListPosts = async () => {
-        setLoading(true)
-        setError(false)
-
+        setRequestStatus('loading');
         try {
             const { data } = await getPosts();
             setPostsList(data);
+            setRequestStatus('success');
         } catch {
-            setError(true);
-        } finally {
-            setLoading(false);
+            setRequestStatus('error');
         };
     };
 
     return {
-        error,
         getListPosts,
-        loading,
-        postsList
+        postsList,
+        requestStatus,
     };
 };
