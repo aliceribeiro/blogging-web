@@ -10,7 +10,6 @@ export const useSearchPost = () => {
 
     const searchPost = async (word: string) => {
         setLoading(true);
-
         try {
             const { data } = await getPostByKeyWord(word);
             setPost(data)

@@ -1,5 +1,10 @@
 import { api } from "./config";
 
+export type PostPayload = {
+    title: string;
+    content: string;
+};
+
 export type PostResponse = {
     id: string;
     title: string;
@@ -22,3 +27,6 @@ export const getPostByKeyWord = async (word: string): Promise<{ data: PostRespon
 
 export const getPosts = async (): Promise<{ data: PostResponse[] }> =>
     await api.get(BASE_URL);
+
+export const putPost = async (id: string | number, data: PostPayload): Promise<{ data: any }> =>
+    await api.put(`${BASE_URL}/${id}`, { data });

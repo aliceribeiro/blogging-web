@@ -7,11 +7,11 @@ import { Modal } from "../Modal";
 import { Typography, TypographyVariant } from "../Typography";
 import { useDeletePost } from "../../hooks/useDeletePost";
 
-type DeleteModalProps = {
+type DeletePostTemplateProps = {
     postId: string | number;
 };
 
-export const DeletePostTemplate = ({ postId }: DeleteModalProps) => {
+export const DeletePostTemplate = ({ postId }: DeletePostTemplateProps) => {
     const modalId = useMemo(() => (`modal-delete-post-${postId}`), [postId])
 
     const { loading, deletePost } = useDeletePost(postId)
@@ -24,7 +24,7 @@ export const DeletePostTemplate = ({ postId }: DeleteModalProps) => {
     return (
         <>
             <Button onClick={handleToggleModal} variant="danger">
-                Criar nova publicação
+                Excluir
             </Button>
             <Modal actions={<>
                 <Button

@@ -12,7 +12,6 @@ export const usePostDetails = (id: string | number) => {
     const getPostDetails = useCallback(async () => {
         setLoading(false);
         setError(false);
-
         try {
             const { data } = await getPostById(id);
             setPost(data);
