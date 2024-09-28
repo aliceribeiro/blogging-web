@@ -1,8 +1,8 @@
-import type { PostResponse } from "../axios/api";
+import type { PostResponse } from "../api";
 
 import { useState } from 'react';
 
-import { getPostByKeyWord } from "../axios/api";
+import { getPostByKeyWord } from "../api";
 
 export const useSearchPost = () => {
     const [loading, setLoading] = useState(false);

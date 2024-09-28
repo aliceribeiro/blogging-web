@@ -1,31 +1,32 @@
+import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+
 import Avatar from "../../components/Avatar";
 import { Button } from "../../components/Button";
 import { PageLayout } from "../../templates/PageLayout";
-import styled from "./styles";
-import bloggingLogo from "/blogging.svg";
+import { usePostDetails } from "../../hooks/usePostDetails"
 import { Paths } from "../../routes/paths";
+import bloggingLogo from "/blogging.svg";
 import DATA from "../../utils/date";
-import { useEffect, useState } from "react";
-import api from "../../axios/api";
-import IPost from "../../interfaces/Post";
+
+import styled from "./styles";
 
 const PostDetails = () => {
   const location = useLocation();
-  const [post, setPost] = useState<IPost>()
-  const [postDate, setPostDate] = useState()
+  const navigate = useNavigate();
+
+  // TODO: Pegar da URL e nao do estado da rota
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+  const id = String(location?.state?.id);
+
+  // TODO: Handle error and loading
+  const { getPostDetails, post } = usePostDetails(id);
 
   useEffect(() => {
-    api.get(`/posts/${location.state.id}`)
-      .then(response => {
-        setPost(response.data.data)
-        setPostDate(DATA.format(new Date(response.data.data.createdAt), "dd/MM/yyyy"))
-      })
-      .catch(error => {
-        console.error("Error get post: ", error)
-      })
-  }, [])
-  const navigate = useNavigate();
+    void getPostDetails();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
+
   return (
     <PageLayout title="Detalhes da publicação">
       <styled.Flex>
@@ -41,7 +42,7 @@ const PostDetails = () => {
         <p>{post?.content}</p>
         <div>
           <styled.CreationDate>Data de criação:</styled.CreationDate>
-          <span>{postDate}</span>
+          <span>{DATA.format(new Date(String(post?.createdAt)), "dd/MM/yyyy")}</span>
         </div>
       </styled.Container>
     </PageLayout>

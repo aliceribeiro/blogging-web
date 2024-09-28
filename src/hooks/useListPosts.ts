@@ -1,8 +1,8 @@
-import type { PostResponse } from "../axios/api";
+import type { PostResponse } from "../api";
 
 import { useState } from 'react';
 
-import { getPosts } from "../axios/api";
+import { getPosts } from "../api";
 
 export const useListPosts = () => {
     const [error, setError] = useState(false);
