@@ -33,7 +33,6 @@ export const FormLogin = () => {
     const { handleSubmit } = methods;
 
     const handleSubmitLogin = async (data: LoginFormValues) => {
-        console.log(data)
         await loginUser(data);
     };
 

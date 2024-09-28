@@ -1,0 +1,11 @@
+.search-input-container {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 4px;
+    width: 100%;
+}
+
+.search-input {
+    flex: 1;
+}

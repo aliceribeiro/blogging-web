@@ -6,8 +6,10 @@ import { Typography, TypographyVariant } from "../../components/Typography";
 type PageLayoutProps = PropsWithChildren<{
   title?: string;
   hasNavbar?: boolean;
+  showNavbar?: boolean;
 }>;
 
+// TODO: Boolean default values is always false
 export const PageLayout = ({
   children,
   title,
