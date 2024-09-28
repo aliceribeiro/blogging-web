@@ -29,7 +29,7 @@ const PostDetails = () => {
   return (
     <PageLayout title="Detalhes da publicação">
       <styled.Flex>
-        <Button onClick={() => navigate(Paths.POSTS)} type="button" variant="">
+        <Button onClick={() => navigate(Paths.POSTS)} type="button" variant="tertiary">
           Voltar
         </Button>
       </styled.Flex>

@@ -17,7 +17,7 @@ const Posts = () => {
   const navigate = useNavigate();
   const [posts, setPosts] = useState<IPost[]>([]);
   const [filter, setFilter] = useState("");
- 
+
   // get all posts
   useEffect(() => {
     //Mock
@@ -88,7 +88,7 @@ const Posts = () => {
   };
 
   const handleGoToPostDetails = (id: string) => {
-    navigate(`${Paths.POST_DETAILS}`, {state:{id: id}});
+    navigate(`${Paths.POST_DETAILS}`, { state: { id: id } });
   };
 
   return (
@@ -113,7 +113,7 @@ const Posts = () => {
         {posts.map((post: IPost, i: number) => (
           <div key={i} className="mb-3 custom-collapse">
             <div className="card">
-              <div 
+              <div
                 className="card-header"
                 onClick={() => handleGoToPostDetails(post.id)}
               >
@@ -140,7 +140,7 @@ const Posts = () => {
                         <Button
                           onClick={() => handleDelete(post.id)}
                           type="button"
-                          variant="tertiary"
+                          variant="danger"
                         >
                           Excluir
                         </Button>

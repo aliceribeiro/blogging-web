@@ -9,10 +9,25 @@ type ButtonProps = PropsWithChildren<{
   onClick?: MouseEventHandler<HTMLButtonElement>;
   srLabel?: string;
   type?: "button" | "reset" | "submit";
-  variant?: "primary" | "secondary" | "tertiary" | "";
+  variant?: "primary" | "secondary" | "tertiary" | "danger";
 }>;
 
-// TODO: Create loading state and danger variant
+const getButtonVariant = (variant: ButtonProps['variant']): string => {
+  switch (variant) {
+    case 'primary':
+      return 'btn btn-primary';
+    case 'secondary':
+      return 'btn btn-primary';
+    case 'tertiary':
+      return 'btn btn-white';
+    case 'danger':
+      return 'btn btn-danger';
+    default:
+      return 'btn btn-primary';
+  };
+};
+
+// TODO: Create loading state
 export const Button = ({
   buttonProps,
   children,
@@ -22,14 +37,8 @@ export const Button = ({
   type = "button",
   variant = "primary",
 }: ButtonProps) => {
-  const className =
-    variant === "primary"
-      ? "btn btn-primary"
-      : variant === "secondary"
-      ? "btn btn-secondary"
-      : variant === "tertiary"
-      ? "btn btn-danger"
-      : "btn btn-white";
+
+  const className = getButtonVariant(variant);
 
   return (
     <button
