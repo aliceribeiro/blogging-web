@@ -3,6 +3,8 @@ import type { PropsWithChildren } from "react";
 import { ErrorState } from "../../components/ErrorState";
 import { Skeleton } from "../../components/Skeleton";
 
+import "./styles.css"
+
 type ListWrapperProps = PropsWithChildren<{
     onTryAgain: () => void;
     status: 'error' | 'idle' | 'loading' | 'success';
@@ -11,7 +13,7 @@ type ListWrapperProps = PropsWithChildren<{
 export const ListWrapper = ({ children, onTryAgain, status }: ListWrapperProps) => {
     if (status === 'loading') {
         return (
-            <section style={{ display: 'flex', flexDirection: 'column', gap: '24px', overflowY: 'auto' }}>
+            <section className="list-container">
                 <Skeleton height="120px" srLabel="Carregando as publicações" width="100%" />
                 <Skeleton height="120px" srLabel="Carregando as publicações" width="100%" />
                 <Skeleton height="120px" srLabel="Carregando as publicações" width="100%" />
@@ -27,9 +29,9 @@ export const ListWrapper = ({ children, onTryAgain, status }: ListWrapperProps) 
     };
 
     return (
-        <>
+        <section className="list-container">
             {children}
-        </>
+        </section>
     );
 };
 
