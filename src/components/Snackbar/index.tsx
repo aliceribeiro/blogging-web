@@ -21,7 +21,6 @@ const getVariant = (variant: SnackbarProps['variant']): string => {
     };
 };
 
-// TODO: Add autohide option;
 export const Snackbar = ({ closable = false, message, open = false, variant }: SnackbarProps) => {
     const className = getVariant(variant);
 
