@@ -20,6 +20,7 @@ type InputSearchProps = BaseFormSearchProps & {
 };
 
 type FormSearchProps = BaseFormSearchProps & {
+    disableButton?: boolean;
     id: string;
     onSubmit: (data: SearchFormValues) => Promise<void>;
 };
@@ -53,7 +54,14 @@ const InputSearch = ({ fieldName, label, placeholder, srLabel }: InputSearchProp
     );
 };
 
-export const FormSearch = ({ id, label, onSubmit, placeholder = '', srLabel }: FormSearchProps) => {
+export const FormSearch = ({
+    disableButton = false,
+    id,
+    label,
+    onSubmit,
+    placeholder = '',
+    srLabel
+}: FormSearchProps) => {
     const methods = useForm<SearchFormValues>({
         defaultValues: {
             word: '',
@@ -66,8 +74,14 @@ export const FormSearch = ({ id, label, onSubmit, placeholder = '', srLabel }: F
     return (
         <Form id={id} methods={methods} onSubmit={handleSubmit(onSubmit)}>
             <div className="search-input-container">
-                <InputSearch fieldName={SearchFormFields.word} label={label} placeholder={placeholder} srLabel={srLabel} />
+                <InputSearch
+                    fieldName={SearchFormFields.word}
+                    label={label}
+                    placeholder={placeholder}
+                    srLabel={srLabel}
+                />
                 <FormSubmitButton
+                    disabled={disableButton}
                     formId={id}
                     onSubmit={handleSubmit(onSubmit)}
                 >

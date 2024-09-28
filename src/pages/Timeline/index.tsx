@@ -1,4 +1,6 @@
-import { useEffect } from "react";
+import type { PostResponse } from "../../api";
+
+import { useEffect, useState } from "react";
 
 import { CardPost } from "../../components/CardPost";
 import { EmptyState } from "../../components/EmptyState";
@@ -14,22 +16,32 @@ import { useSearchPost } from "../../hooks/useSearchPost";
 import styled from "./styles";
 
 const Timeline = () => {
+  const [currentList, setCurrentList] = useState<Array<PostResponse>>([])
+
   const { getListPosts, postsList, requestStatus } = useListPosts()
   // TODO: Get proper user profile
-  // const { hasPermission } = usePermission("teacher");
-  const { hasPermission } = usePermission("student");
-  // TODO: Add loading e o resultado né
-  const { searchPost } = useSearchPost();
+  const { hasPermission } = usePermission('student');
+  const { loading, searchPost, posts } = useSearchPost();
 
-  useEffect(() => {
-    void getListPosts()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const pageState = loading ? 'loading' : requestStatus;
 
   const handleSubmitSearch = async (data: SearchFormValues) => {
     const { word } = data;
     await searchPost(String(word));
   };
+
+  useEffect(() => {
+    setCurrentList(postsList)
+  }, [postsList])
+
+  useEffect(() => {
+    setCurrentList(posts)
+  }, [posts])
+
+  useEffect(() => {
+    void getListPosts()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <PageLayout showNavbar title="Linha do tempo">
@@ -39,21 +51,25 @@ const Timeline = () => {
           label="Buscar publicação:"
           onSubmit={handleSubmitSearch}
           placeholder="Buscar"
-          srLabel="Campo para buscar uma publicação" />
+          srLabel="Campo para buscar uma publicação"
+          disableButton={loading}
+        />
         <div className="d-flex align-items-center justify-content-between">
-          <div className=" mb-4 ">{hasPermission && <FormPost />}</div>
+          <div className="mb-4">{hasPermission && <FormPost />}</div>
         </div>
-        <ListWrapper onTryAgain={() => void getListPosts()} status={requestStatus}>
-          {!postsList.length ? <EmptyState description="Ainda não há nenhuma publicação" /> : (
-            <section>
-              {postsList.map((post, index) => (
-                <CardPost key={index} post={post} />
-              ))}
-            </section>
-          )}
+        <ListWrapper onTryAgain={() => void getListPosts()} status={pageState}>
+          {!currentList.length ?
+            <EmptyState description="Ainda não há nenhuma publicação" />
+            : (
+              <section>
+                {currentList.map((post, index) => (
+                  <CardPost key={index} post={post} />
+                ))}
+              </section>
+            )}
         </ListWrapper>
       </styled.Container>
-    </PageLayout >
+    </PageLayout>
   );
 };
 
