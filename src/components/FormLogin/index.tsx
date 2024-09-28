@@ -22,7 +22,6 @@ const FORM_DEFAULT_VALUES = {
     password: '',
 };
 
-// TODO: Como uma pessoa pode criar a conta?
 export const FormLogin = () => {
     const { error, loading, loginUser } = useLogin();
     const navigate = useNavigate();
@@ -54,7 +53,7 @@ export const FormLogin = () => {
                 />
                 <div className="form-login-actions-container">
                     <FormSubmitButton
-                        disabled={loading}
+                        loading={loading}
                         formId={FORM_ID}
                         fullWidth
                         onSubmit={handleSubmit(handleSubmitLogin)}

@@ -8,10 +8,18 @@ type FormSubmitButton = PropsWithChildren<{
     disabled?: boolean;
     fullWidth?: boolean;
     formId: string;
+    loading?: boolean;
     onSubmit: MouseEventHandler<HTMLButtonElement>;
 }>;
 
-export const FormSubmitButton = ({ children, disabled: parentDisable, formId, fullWidth = false, onSubmit }: FormSubmitButton) => {
+export const FormSubmitButton = ({
+    children,
+    disabled: parentDisable,
+    formId,
+    fullWidth = false,
+    loading = false,
+    onSubmit
+}: FormSubmitButton) => {
     const { formState: { errors } } = useFormContext();
 
     const hasError = Object.keys(errors).length > 0;
@@ -24,6 +32,7 @@ export const FormSubmitButton = ({ children, disabled: parentDisable, formId, fu
             }}
             disabled={disabled}
             fullWidth={fullWidth}
+            loading={loading}
             onClick={onSubmit}
             type="submit"
         >

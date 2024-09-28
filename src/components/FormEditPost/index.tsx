@@ -57,7 +57,7 @@ export const FormEditPost = ({ defaultValues, postId }: FormEditPostProps) => {
             </Button>
             <Modal actions={<>
                 <FormSubmitButton
-                    disabled={loading}
+                    loading={loading}
                     formId={modalId}
                     onSubmit={handleSubmit(handleSaveEdition)}
                 >

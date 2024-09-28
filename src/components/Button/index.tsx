@@ -9,7 +9,9 @@ type ButtonProps = PropsWithChildren<{
   buttonProps?: object;
   disabled?: boolean;
   fullWidth?: boolean;
+  loading?: boolean;
   onClick?: MouseEventHandler<HTMLButtonElement>;
+  srAnnouncement?: string;
   srLabel?: string;
   type?: "button" | "reset" | "submit";
   variant?: "primary" | "secondary" | "tertiary" | "danger";
@@ -30,14 +32,15 @@ const getButtonVariant = (variant: ButtonProps['variant']): string => {
   };
 };
 
-// TODO: Create loading state
 export const Button = ({
   buttonProps,
   children,
   disabled = false,
   fullWidth = false,
+  loading = false,
   onClick,
   srLabel,
+  srAnnouncement = 'Carregando',
   type = "button",
   variant = "primary",
 }: ButtonProps) => {
@@ -45,16 +48,32 @@ export const Button = ({
   const className = getButtonVariant(variant);
 
   return (
-    <button
-      aria-label={srLabel ?? String(children)}
-      disabled={disabled}
-      className={fullWidth ? `${className} btn-fullWidth` : className}
-      onClick={onClick}
-      tabIndex={0}
-      type={type}
-      {...buttonProps}
-    >
-      {children}
-    </button>
+    <>
+      {loading ?
+        <button
+          aria-label={srAnnouncement}
+          className={fullWidth ? `${className} btn-fullWidth` : className}
+          tabIndex={0}
+          type={type}
+          disabled
+          {...buttonProps}
+        >
+          <span className="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+          Carregando...
+        </button>
+        :
+        <button
+          aria-label={srLabel}
+          disabled={disabled}
+          className={fullWidth ? `${className} btn-fullWidth` : className}
+          onClick={onClick}
+          tabIndex={0}
+          type={type}
+          {...buttonProps}
+        >
+          {children}
+        </button>
+      }
+    </>
   );
 };

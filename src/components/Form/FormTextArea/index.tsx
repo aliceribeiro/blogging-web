@@ -7,7 +7,6 @@ type FormTextAreaProps = {
     srLabel: string;
 }
 
-// TODO: Add counter and not allow user to resize
 export const FormTextArea = ({ fieldName, label, placeholder = '', srLabel }: FormTextAreaProps) => {
     const {
         field: { onChange, value },

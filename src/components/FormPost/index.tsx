@@ -64,7 +64,7 @@ export const FormPost = () => {
                     actions={
                         <>
                             <FormSubmitButton
-                                disabled={loading}
+                                loading={loading}
                                 formId={FORM_ID}
                                 onSubmit={handleSubmit(handleSavePost)}
                             >

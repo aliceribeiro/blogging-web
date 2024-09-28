@@ -30,7 +30,7 @@ export const DeletePostTemplate = ({ postId }: DeletePostTemplateProps) => {
             </Button>
             <Modal actions={<>
                 <Button
-                    disabled={loading}
+                    loading={loading}
                     onClick={() => void deletePost()}
                     variant="danger"
                 >
