@@ -4,28 +4,26 @@ import { useCallback, useState } from "react";
 
 import { getPostById } from "../api";
 
+type RequestStatus = 'idle' | 'error' | 'loading' | 'success';
+
 export const usePostDetails = (id: string | number) => {
-    const [error, setError] = useState(false);
-    const [loading, setLoading] = useState(false);
     const [post, setPost] = useState<PostResponse | null>(null)
+    const [requestStatus, setRequestStatus] = useState<RequestStatus>('idle')
 
     const getPostDetails = useCallback(async () => {
-        setLoading(false);
-        setError(false);
+        setRequestStatus('loading');
         try {
             const { data } = await getPostById(id);
             setPost(data);
+            setRequestStatus('success');
         } catch {
-            setError(true);
-        } finally {
-            setLoading(false);
-        };
+            setRequestStatus('error');
+        }
     }, [id]);
 
     return {
-        error,
         getPostDetails,
-        loading,
         post,
+        requestStatus,
     };
 };
