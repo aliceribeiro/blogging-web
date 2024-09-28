@@ -8,17 +8,13 @@ import bloggingLogo from "/blogging.svg";
 export const Navbar = () => {
   const navigate = useNavigate();
 
-  const handleClick = () => {
-    return navigate(Paths.BASE, { replace: true });
-  };
-
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary w-100">
       <div className="container">
         <a
           className="navbar-brand d-flex gap-2"
           href={Paths.BASE}
-          onClick={handleClick}
+          onClick={() => navigate(Paths.BASE, { replace: true })}
         >
           <img src={bloggingLogo} aria-hidden />
           <h4 className="m-0">Blogging</h4>

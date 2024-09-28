@@ -2,8 +2,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  margin: 0 auto;
-  width: 100vw;
+  margin: 0;
 }
 
 :root {
@@ -13,7 +12,6 @@
 
   color-scheme: light dark;
   color: rgba(0, 0, 0, 0.87);
-  background-color: #f4f6f8;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -22,8 +20,5 @@
 }
 
 body {
-  margin: 0;
-  display: flex;
-  min-height: 100vh;
   background-color: #e3eaf1;
 }

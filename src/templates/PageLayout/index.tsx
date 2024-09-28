@@ -20,7 +20,7 @@ export const PageLayout = ({
   return (
     <>
       {showNavbar && <Navbar />}
-      <main className="container mt-5">
+      <main className="container mt-5 mb-5">
         <header className="d-flex justify-content-between">
           {title && (
             <Typography component="h1" variant={TypographyVariant["title-bold"]}>
