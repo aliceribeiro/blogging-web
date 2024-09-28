@@ -8,7 +8,6 @@ import { PageLayout } from "../../templates/PageLayout";
 import { usePostDetails } from "../../hooks/usePostDetails"
 import { Paths } from "../../routes/paths";
 import bloggingLogo from "/blogging.svg";
-// TODO: Melhorar aqui
 import DATA from "../../utils/date";
 
 import styled from "./styles";
