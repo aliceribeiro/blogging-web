@@ -1,11 +1,14 @@
 import type { MouseEventHandler, PropsWithChildren } from "react";
 
+import "./styles.css"
+
 /**
  * If type is submit or reset, it is necessary to provide formId
  */
 type ButtonProps = PropsWithChildren<{
   buttonProps?: object;
   disabled?: boolean;
+  fullWidth?: boolean;
   onClick?: MouseEventHandler<HTMLButtonElement>;
   srLabel?: string;
   type?: "button" | "reset" | "submit";
@@ -17,7 +20,7 @@ const getButtonVariant = (variant: ButtonProps['variant']): string => {
     case 'primary':
       return 'btn btn-primary';
     case 'secondary':
-      return 'btn btn-primary';
+      return 'btn btn-secondary';
     case 'tertiary':
       return 'btn btn-white';
     case 'danger':
@@ -32,6 +35,7 @@ export const Button = ({
   buttonProps,
   children,
   disabled = false,
+  fullWidth = false,
   onClick,
   srLabel,
   type = "button",
@@ -44,7 +48,7 @@ export const Button = ({
     <button
       aria-label={srLabel ?? String(children)}
       disabled={disabled}
-      className={className}
+      className={fullWidth ? `${className} btn-fullWidth` : className}
       onClick={onClick}
       tabIndex={0}
       type={type}
