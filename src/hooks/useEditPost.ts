@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { putPost } from "../api";
+import { usePermission } from "./usePermission";
 import { useSnackbarContext } from "./useSnackbarContext";
 import { Paths } from "../routes/paths";
 
@@ -11,12 +12,13 @@ export const useEditPost = (id: string | number) => {
     const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
+    const { token } = usePermission();
     const { setSnackbar } = useSnackbarContext();
 
     const editPost = async (data: PostPayload) => {
         setLoading(true);
         try {
-            await putPost(id, data);
+            await putPost(id, token!, data);
 
             setSnackbar({
                 closable: true,

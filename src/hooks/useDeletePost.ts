@@ -4,17 +4,19 @@ import { useNavigate } from "react-router-dom";
 import { deletePost as deletePostService } from "../api";
 import { useSnackbarContext } from "./useSnackbarContext";
 import { Paths } from "../routes/paths";
+import { usePermission } from "./usePermission";
 
 export const useDeletePost = (id: string | number) => {
     const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
+    const { token } = usePermission();
     const { setSnackbar } = useSnackbarContext();
 
     const deletePost = async () => {
         setLoading(true);
         try {
-            await deletePostService(id);
+            await deletePostService(id, token!);
 
             setSnackbar({
                 closable: true,

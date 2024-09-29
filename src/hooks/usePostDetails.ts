@@ -13,7 +13,7 @@ export const usePostDetails = (id: string | number) => {
     const getPostDetails = useCallback(async () => {
         setRequestStatus('loading');
         try {
-            const { data } = await getPostById(id);
+            const data = await getPostById(id);
             setPost(data);
             setRequestStatus('success');
         } catch {

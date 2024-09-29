@@ -16,7 +16,7 @@ export const useSearchPost = () => {
         setError(false);
         setLoading(true);
         try {
-            const { data } = await getPostByKeyWord(word);
+            const data = await getPostByKeyWord(word);
             setPosts(data);
         } catch {
             setSnackbar({

@@ -1,5 +1,15 @@
 import { api } from "./config";
 
+type ApiResponse<T> = {
+    data: T;
+    message: string;
+    statusCode: number;
+};
+
+type Token = {
+    token: string;
+}
+
 export type PostPayload = {
     title: string;
     content: string;
@@ -14,23 +24,50 @@ export type PostResponse = {
     updatedAt: Date;
 };
 
-const BASE_URL = '/posts';
+export type UserPayload = {
+    username: string;
+    password: string;
+};
 
-export const deletePost = async (id: string | number): Promise<{ data: any }> =>
-    await api.delete(`${BASE_URL}/${id}`);
+const BASE_URL_POSTS = '/posts';
+const BASE_URL_USERS = '/users';
 
-export const getPostById = async (id: string | number): Promise<{ data: PostResponse }> =>
-    await api.get(`${BASE_URL}/${id}`);
+export const deletePost = async (id: string | number, token: string): Promise<ApiResponse<string>> =>
+    await api.delete(`${BASE_URL_POSTS}/${id}`, null, {
+        headers: {
+            'authorization': token,
+        },
+    });
 
-export const getPostByKeyWord = async (word: string): Promise<{ data: PostResponse[] }> =>
-    await api.get(`${BASE_URL}/search?keyword=${word}`);
+export const getPostById = async (id: string | number): Promise<PostResponse> => {
+    const { data } = await api.get<ApiResponse<PostResponse>>(`${BASE_URL_POSTS}/${id}`);
+    return data.data;
+}
+
+export const getPostByKeyWord = async (word: string): Promise<PostResponse[]> => {
+    const { data } = await api.get<ApiResponse<PostResponse[]>>(`${BASE_URL_POSTS}/search?keyword=${word}`);
+    return data.data;
+}
 
 export const getPosts = async (): Promise<{ data: PostResponse[] }> =>
-    await api.get(BASE_URL);
+    await api.get<ApiResponse<PostResponse[]>>(BASE_URL_POSTS);
 
-export const postPost = async (data: PostPayload): Promise<{ data: any }> =>
-    await api.post(BASE_URL, { data });
+export const postPost = async (token: string, data: PostPayload): Promise<ApiResponse<string>> =>
+    await api.post<ApiResponse<string>>(BASE_URL_POSTS, data, {
+        headers: {
+            'authorization': token,
+        },
+    });
 
+export const postLogin = async ({ username, password }: UserPayload): Promise<Token> => {
+    const { data } = await api.post<ApiResponse<Token>>(`${BASE_URL_USERS}/login`, { username, password });
 
-export const putPost = async (id: string | number, data: PostPayload): Promise<{ data: any }> =>
-    await api.put(`${BASE_URL}/${id}`, { data });
+    return data.data;
+};
+
+export const putPost = async (id: string | number, token: string, data: PostPayload): Promise<ApiResponse<string>> =>
+    await api.put<ApiResponse<string>>(`${BASE_URL_POSTS}/${id}`, data, {
+        headers: {
+            'authorization': token,
+        },
+    });

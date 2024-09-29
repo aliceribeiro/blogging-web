@@ -1,13 +1,12 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+import type { UserPayload } from "../api";
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { postLogin } from "../api";
 import { useSnackbarContext } from "./useSnackbarContext";
 import { Paths } from "../routes/paths";
-
-type LoginPayload = {
-    password: string;
-    username: string;
-};
 
 export const useLogin = () => {
     const [loading, setLoading] = useState(false);
@@ -15,18 +14,11 @@ export const useLogin = () => {
     const navigate = useNavigate();
     const { setSnackbar } = useSnackbarContext();
 
-    const loginUser = async ({ username, password }: LoginPayload) => {
+    const loginUser = async ({ username, password }: UserPayload) => {
         setLoading(true);
         try {
-            // TODO: Send data to API and save user authorization 
-            await new Promise((resolve) => {
-                setTimeout(() => {
-                    console.log({ username, password })
-                    resolve(null)
-                }, 500);
-            });
-
-            // TODO: Salvar info do usuário logado
+            const { token } = await postLogin({ username, password });
+            window.localStorage.setItem('userToken', token);
             navigate(Paths.BASE);
         } catch {
             setSnackbar({
