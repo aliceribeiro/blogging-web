@@ -13,7 +13,7 @@ export const useListPosts = () => {
     const getListPosts = async () => {
         setRequestStatus('loading');
         try {
-            const { data } = await getPosts();
+            const data = await getPosts();
             setPostsList(data);
             setRequestStatus('success');
         } catch {

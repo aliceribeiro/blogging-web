@@ -14,7 +14,7 @@ type CardPostProps = {
 export const CardPost = ({ post }: CardPostProps) => {
     const navigate = useNavigate();
 
-    const { author, content, id, title } = post
+    const { content, id, title } = post
 
     return (
         <div className="mb-3 custom-collapse">
@@ -36,12 +36,6 @@ export const CardPost = ({ post }: CardPostProps) => {
                             variant={TypographyVariant['paragraph-lg-regular']}
                         >
                             {content}
-                        </Typography>
-                        <Typography
-                            component="p"
-                            variant={TypographyVariant['paragraph-sm-regular']}
-                        >
-                            Autor: {author}
                         </Typography>
                     </div>
                 </div>

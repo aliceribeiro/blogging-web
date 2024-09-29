@@ -8,7 +8,7 @@ type ApiResponse<T> = {
 
 type Token = {
     token: string;
-}
+};
 
 export type PostPayload = {
     title: string;
@@ -19,7 +19,6 @@ export type PostResponse = {
     id: string;
     title: string;
     content: string;
-    author: string;
     createdAt: Date;
     updatedAt: Date;
 };
@@ -42,15 +41,22 @@ export const deletePost = async (id: string | number, token: string): Promise<Ap
 export const getPostById = async (id: string | number): Promise<PostResponse> => {
     const { data } = await api.get<ApiResponse<PostResponse>>(`${BASE_URL_POSTS}/${id}`);
     return data.data;
-}
+};
 
-export const getPostByKeyWord = async (word: string): Promise<PostResponse[]> => {
-    const { data } = await api.get<ApiResponse<PostResponse[]>>(`${BASE_URL_POSTS}/search?keyword=${word}`);
-    return data.data;
-}
+export const getPostByKeyWord = async (word: string, token: string): Promise<PostResponse[]> => {
+    const { data } = await api.get<ApiResponse<PostResponse[]>>(`${BASE_URL_POSTS}/search?keyword=${word}`, null, {
+        headers: {
+            'authorization': token,
+        },
+    });
+    return data;
+};
 
-export const getPosts = async (): Promise<{ data: PostResponse[] }> =>
-    await api.get<ApiResponse<PostResponse[]>>(BASE_URL_POSTS);
+export const getPosts = async (): Promise<PostResponse[]> => {
+    const { data } = await api.get<ApiResponse<PostResponse[]>>(BASE_URL_POSTS);
+    return data;
+};
+
 
 export const postPost = async (token: string, data: PostPayload): Promise<ApiResponse<string>> =>
     await api.post<ApiResponse<string>>(BASE_URL_POSTS, data, {
@@ -61,7 +67,6 @@ export const postPost = async (token: string, data: PostPayload): Promise<ApiRes
 
 export const postLogin = async ({ username, password }: UserPayload): Promise<Token> => {
     const { data } = await api.post<ApiResponse<Token>>(`${BASE_URL_USERS}/login`, { username, password });
-
     return data.data;
 };
 

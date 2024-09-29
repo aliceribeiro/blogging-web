@@ -18,7 +18,7 @@ export const useCreatePost = () => {
     const savePost = async ({ content, title }: PostPayload): Promise<any> => {
         setLoading(true);
         try {
-            await postPost(token!, { content, title })
+            await postPost(token, { content, title })
 
             setSnackbar({
                 closable: true,

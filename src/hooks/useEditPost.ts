@@ -18,7 +18,7 @@ export const useEditPost = (id: string | number) => {
     const editPost = async (data: PostPayload) => {
         setLoading(true);
         try {
-            await putPost(id, token!, data);
+            await putPost(id, token, data);
 
             setSnackbar({
                 closable: true,

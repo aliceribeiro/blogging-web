@@ -16,7 +16,7 @@ export const useDeletePost = (id: string | number) => {
     const deletePost = async () => {
         setLoading(true);
         try {
-            await deletePostService(id, token!);
+            await deletePostService(id, token);
 
             setSnackbar({
                 closable: true,

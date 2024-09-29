@@ -2,7 +2,6 @@
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-import { Avatar } from "../../components/Avatar";
 import { Button } from "../../components/Button";
 import { DeletePostTemplate } from "../../components/DeletePostTemplate";
 import { ListWrapper } from "../../templates/ListWrapper";
@@ -48,10 +47,6 @@ const PostDetails = () => {
                 >
                   Última edição: {dateHandler(post?.updatedAt ?? post?.createdAt).format('DD/MM/YYYY')}
                 </Typography>
-                <div className="author-name">
-                  <Avatar name={post?.author} size={32} />
-                  <Typography component="p">{post?.author ?? 'Desconhecido'}</Typography>
-                </div>
               </div>
             </div>
           </header>
