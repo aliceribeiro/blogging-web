@@ -8,12 +8,6 @@
     font-weight: 400;
 }
 
-.paragraph-sm-regular-erased {
-    font-size: 14px;
-    font-weight: 300;
-    text-decoration: line-through;
-}
-
 .paragraph-sm-medium {
     font-size: 14px;
     font-weight: 500;
@@ -21,11 +15,6 @@
 
 .paragraph-lg-regular {
     font-size: 16px;
-    font-weight: 400;
-}
-
-.subtitle-regular {
-    font-size: 24px;
     font-weight: 400;
 }
 
@@ -42,19 +31,4 @@
 .title-bold {
     font-size: 32px;
     font-weight: 700;
-}
-
-.text-default-style {
-    display: inline-flex;
-    gap: 8px;
-    text-align: left;
-}
-
-.sr-only {
-    position: absolute;
-    /* Zero values for pixel sizes removes that element from the flow of your document,
-    meaning screen readers will ignore it */
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
 }
