@@ -7,8 +7,8 @@ import { Navbar } from "../../components/Navbar";
 import { Snackbar } from "../../components/Snackbar";
 import { Typography, TypographyVariant } from "../../components/Typography";
 import { usePermission } from "../../hooks/usePermission";
-import { useSnackbar } from "../../hooks/useSnackbar";
-import { Paths } from "../../routes/paths"
+import { useSnackbarContext } from "../../hooks/useSnackbarContext";
+import { Paths } from "../../routes/paths";
 
 import "./styles.css";
 
@@ -23,10 +23,11 @@ export const PageLayout = ({
   showNavbar = false,
 }: PageLayoutProps) => {
   const navigate = useNavigate();
-  const snackbar = useSnackbar();
+  const { snackbar } = useSnackbarContext();
   // TODO: Get proper user profile
   const { hasPermission } = usePermission('teacher');
 
+  // TODO: Ajustar essa logiquinha aqui
   const showCreatePostButton = title && hasPermission;
 
   return (
@@ -44,12 +45,13 @@ export const PageLayout = ({
           </Button>}
         </header>
         <section className="row justify-content-center">{children}</section>
+        <Snackbar
+          closable={snackbar.closable}
+          message={snackbar.message}
+          open={snackbar.open}
+          variant={snackbar.variant}
+        />
       </main>
-      <Snackbar
-        closable={snackbar.closable}
-        message={snackbar.message}
-        variant={snackbar.variant}
-      />
     </>
   );
 };

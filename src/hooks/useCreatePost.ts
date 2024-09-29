@@ -1,32 +1,24 @@
+import type { PostPayload } from "../api";
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { useSnackbar } from "./useSnackbar";
+import { postPost } from "../api";
+import { useSnackbarContext } from "./useSnackbarContext";
 import { Paths } from "../routes/paths";
-
-type SavePostPayload = {
-    description: string;
-    title: string;
-};
 
 export const useCreatePost = () => {
     const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
-    const { onShowSnackbar } = useSnackbar();
+    const { setSnackbar } = useSnackbarContext();
 
-    const savePost = async ({ description, title }: SavePostPayload): Promise<any> => {
+    const savePost = async ({ content, title }: PostPayload): Promise<any> => {
         setLoading(true);
         try {
-            // TODO: Send data to API
-            await new Promise((resolve) => {
-                setTimeout(() => {
-                    console.log({ description, title })
-                    resolve(null)
-                }, 500);
-            });
+            await postPost({ content, title })
 
-            onShowSnackbar({
+            setSnackbar({
                 closable: true,
                 message: 'Publicação criada com sucesso.',
                 variant: 'success'
@@ -34,7 +26,7 @@ export const useCreatePost = () => {
 
             navigate(Paths.BASE);
         } catch {
-            onShowSnackbar({
+            setSnackbar({
                 closable: true,
                 message: 'Não foi possível salvar a publicação. Por favor, tente novamente mais tarde.',
                 variant: 'error'

@@ -4,29 +4,29 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { putPost } from "../api";
-import { useSnackbar } from "./useSnackbar";
+import { useSnackbarContext } from "./useSnackbarContext";
 import { Paths } from "../routes/paths";
 
 export const useEditPost = (id: string | number) => {
     const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
-    const { onShowSnackbar } = useSnackbar();
+    const { setSnackbar } = useSnackbarContext();
 
     const editPost = async (data: PostPayload) => {
         setLoading(true);
         try {
-            await putPost(id, data)
+            await putPost(id, data);
 
-            onShowSnackbar({
+            setSnackbar({
                 closable: true,
                 message: 'Publicação alterada com sucesso.',
                 variant: 'success'
             });
 
-            navigate(Paths.BASE)
+            navigate(Paths.BASE);
         } catch {
-            onShowSnackbar({
+            setSnackbar({
                 closable: true,
                 message: 'Não foi possível salvar a edição. Por favor, tente novamente mais tarde.',
                 variant: 'error'

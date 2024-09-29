@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { useSnackbar } from "./useSnackbar";
+import { useSnackbarContext } from "./useSnackbarContext";
 import { Paths } from "../routes/paths";
 
 type LoginPayload = {
@@ -13,7 +13,7 @@ export const useLogin = () => {
     const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
-    const { onShowSnackbar } = useSnackbar();
+    const { setSnackbar } = useSnackbarContext();
 
     const loginUser = async ({ username, password }: LoginPayload) => {
         setLoading(true);
@@ -29,7 +29,7 @@ export const useLogin = () => {
             // TODO: Salvar info do usuário logado
             navigate(Paths.BASE);
         } catch {
-            onShowSnackbar({
+            setSnackbar({
                 closable: true,
                 message: '"Não foi possível fazer login. Por favor, tente novamente mais tarde.',
                 variant: 'error'

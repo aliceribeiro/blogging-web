@@ -1,19 +1,19 @@
 import { useState } from 'react';
 
 import { deletePost as deletePostService } from "../api";
-import { useSnackbar } from "./useSnackbar";
+import { useSnackbarContext } from "./useSnackbarContext";
 
 export const useDeletePost = (id: string | number) => {
     const [loading, setLoading] = useState(false);
 
-    const { onShowSnackbar } = useSnackbar();
+    const { setSnackbar } = useSnackbarContext();
 
     const deletePost = async () => {
         setLoading(true);
         try {
             await deletePostService(id);
 
-            onShowSnackbar({
+            setSnackbar({
                 closable: true,
                 message: 'Publicação excluída com sucesso.',
                 variant: 'success'
@@ -21,14 +21,14 @@ export const useDeletePost = (id: string | number) => {
 
             // TODO: Close modal and reload list
         } catch {
-            onShowSnackbar({
+            setSnackbar({
                 closable: true,
-                message: 'Não foi possível excluir a publicação. Por favor, tente novamente mais tarde.s',
+                message: 'Não foi possível excluir a publicação. Por favor, tente novamente mais tarde.',
                 variant: 'error'
             });
         } finally {
-            setLoading(false)
-        }
+            setLoading(false);
+        };
     };
 
     return {
@@ -36,4 +36,3 @@ export const useDeletePost = (id: string | number) => {
         deletePost,
     };
 };
-

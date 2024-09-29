@@ -1,0 +1,20 @@
+.snackbar-container {
+    z-index: 1056;
+    width: 100%;
+    max-width: 720px;
+    bottom: 32px;
+}
+
+.snackbar-content {
+    width: 100%;
+}
+
+.snackbar-wrapper {
+    position: fixed;
+    width: 100%;
+    z-index: 1056;
+    bottom: 24px;
+    left: 0;
+    display: flex;
+    justify-content: center;
+}

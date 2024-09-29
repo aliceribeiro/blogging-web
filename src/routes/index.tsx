@@ -6,35 +6,37 @@ import Login from "../pages/Login";
 import PageNotFound from "../pages/PageNotFound";
 import PostDetails from "../pages/PostDetails";
 import Timeline from "../pages/Timeline";
+import { withProviders } from "../templates/withProviders";
 import { ErrorBoundary } from "../pages/ErrorBoundary";
 import { BasePaths, Paths } from "./paths";
 
+// Fica melhor em cada página
 const router = createBrowserRouter(
   [
     {
       path: Paths.BASE,
       index: true,
-      element: <Timeline />,
+      element: withProviders(<Timeline />)(),
       errorElement: <ErrorBoundary />,
     },
     {
       path: Paths.LOGIN,
-      element: <Login />,
+      element: withProviders(<Login />)(),
       errorElement: <ErrorBoundary />
     },
     {
       path: Paths.POST_DETAILS,
-      element: <PostDetails />,
+      element: withProviders(<PostDetails />)(),
       errorElement: <ErrorBoundary />,
     },
     {
       path: Paths.CREATE_POST,
-      element: <FormCreatePost />,
+      element: withProviders(<FormCreatePost />)(),
       errorElement: <ErrorBoundary />,
     },
     {
       path: `${BasePaths.EDIT_POST}/:postId`,
-      element: <FormEditPost />,
+      element: withProviders(<FormEditPost />)(),
       errorElement: <ErrorBoundary />,
     },
     {
@@ -45,4 +47,3 @@ const router = createBrowserRouter(
 );
 
 export default router;
-
