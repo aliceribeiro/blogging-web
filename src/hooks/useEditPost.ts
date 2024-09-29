@@ -1,13 +1,16 @@
 import type { PostPayload } from "../api";
 
-import { useState } from 'react';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { putPost } from "../api";
 import { useSnackbar } from "./useSnackbar";
+import { Paths } from "../routes/paths";
 
 export const useEditPost = (id: string | number) => {
     const [loading, setLoading] = useState(false);
 
+    const navigate = useNavigate();
     const { onShowSnackbar } = useSnackbar();
 
     const editPost = async (data: PostPayload) => {
@@ -20,6 +23,8 @@ export const useEditPost = (id: string | number) => {
                 message: 'Publicação alterada com sucesso.',
                 variant: 'success'
             });
+
+            navigate(Paths.BASE)
         } catch {
             onShowSnackbar({
                 closable: true,

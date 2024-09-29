@@ -1,0 +1,13 @@
+.actions-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 24px;
+}
+
+.form-edit-body {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin: 24px 12px;
+}

@@ -1,21 +1,24 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { Avatar } from "../../components/Avatar";
+import { Button } from "../../components/Button";
 import { DeletePostTemplate } from "../../components/DeletePostTemplate";
-import { FormEditPost } from "../../components/FormEditPost";
 import { ListWrapper } from "../../templates/ListWrapper";
 import { PageLayout } from "../../templates/PageLayout";
 import { Typography, TypographyVariant } from "../../components/Typography";
 import { usePermission } from "../../hooks/usePermission";
-import { usePostDetails } from "../../hooks/usePostDetails"
+import { usePostDetails } from "../../hooks/usePostDetails";
+import { Paths } from "../../routes/paths";
 import DATA from "../../utils/date";
 
 import "./styles.css";
 
 const PostDetails = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   // TODO: Get proper user profile and improve name
   const { hasPermission } = usePermission('teacher');
 
@@ -58,13 +61,15 @@ const PostDetails = () => {
           <Typography component="p">{post?.content}</Typography>
           {showActionButtons && (
             <div className="actions-container">
-              <FormEditPost defaultValues={{ content: post?.content ?? '', title: post?.title ?? '' }} postId={id} />
+              <Button onClick={() => navigate(Paths.EDIT_POST(id))} variant="secondary">
+                Editar
+              </Button>
               <DeletePostTemplate postId={id} />
             </div>
           )}
         </section>
       </ListWrapper>
-    </PageLayout >
+    </PageLayout>
   );
 };
 

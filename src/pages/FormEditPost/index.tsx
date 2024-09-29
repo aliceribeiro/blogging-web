@@ -1,33 +1,37 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
-import { useMemo } from 'react';
-
+import { useEffect, useMemo } from 'react';
+import { useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Modal as BootstrapModal } from 'bootstrap';
 
-import { Button } from "../Button";
-import { Form } from "../Form";
-import { FormSubmitButton } from "../Form/FormSubmitButton";
-import { FormTextArea } from "../Form/FormTextArea";
-import { FormTextField } from "../Form/FormTextField";
-import { Modal } from "../Modal";
+import { Button } from "../../components/Button";
+import { Form } from "../../components/Form";
+import { FormSubmitButton } from "../../components/Form/FormSubmitButton";
+import { FormTextArea } from "../../components/Form/FormTextArea";
+import { FormTextField } from "../../components/Form/FormTextField";
+import { ListWrapper } from "../../templates/ListWrapper";
+import { PageLayout } from "../../templates/PageLayout";
 import { useEditPost } from "../../hooks/useEditPost";
+import { usePostDetails } from "../../hooks/usePostDetails";
 import { FormEditPostSchema, EditPostFormFields, EditPostFormValues } from "./FormEditPost.schema";
 
 import "./styles.css";
 
-type FormEditPostProps = {
-    defaultValues: {
-        content: string;
-        title: string;
-    };
-    postId: string | number;
-};
+const FormEditPost = () => {
+    const params = useParams();
+    const postId = params.postId ?? ''
 
-export const FormEditPost = ({ defaultValues, postId }: FormEditPostProps) => {
-    const modalId = useMemo(() => (`modal-edit-post-${postId}`), [postId])
+    const {
+        getPostDetails,
+        post,
+        requestStatus
+    } = usePostDetails(postId);
 
-    // TODO: Sucesso
+    const defaultValues = useMemo(() => ({
+        content: post?.content,
+        title: post?.title
+    }), [post]);
+
     const { editPost, loading } = useEditPost(postId)
     const methods = useForm<EditPostFormValues>({
         defaultValues,
@@ -45,21 +49,21 @@ export const FormEditPost = ({ defaultValues, postId }: FormEditPostProps) => {
         reset(defaultValues);
     };
 
-    const handleToggleModal = () => {
-        const modal = BootstrapModal.getOrCreateInstance(document.getElementById(modalId)!);
-        modal.toggle();
-    };
+    useEffect(() => {
+        // This is necessary so default values is set on form fields
+        reset(defaultValues);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [post]);
+
+    useEffect(() => {
+        void getPostDetails();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [postId]);
 
     return (
-        <>
-            <Button onClick={handleToggleModal} variant="secondary">
-                Editar
-            </Button>
-            <Modal
-                id={modalId}
-                title="Edição"
-            >
-                <Form id={modalId} methods={methods} onSubmit={handleSubmit(handleSaveEdition)}>
+        <PageLayout showNavbar title="Detalhes da publicação">
+            <ListWrapper onTryAgain={() => void getPostDetails()} status={requestStatus}>
+                <Form id={postId} methods={methods} onSubmit={handleSubmit(handleSaveEdition)}>
                     <section className="form-edit-body">
                         <FormTextField
                             fieldName={EditPostFormFields.title}
@@ -72,10 +76,10 @@ export const FormEditPost = ({ defaultValues, postId }: FormEditPostProps) => {
                             srLabel="Campo para inserir o conteúdo da publicação"
                         />
                     </section>
-                    <div className="modal-footer custom-modal-footer">
+                    <div className="actions-container">
                         <FormSubmitButton
                             loading={loading}
-                            formId={modalId}
+                            formId={postId}
                             onSubmit={handleSubmit(handleSaveEdition)}
                         >
                             Salvar
@@ -86,14 +90,16 @@ export const FormEditPost = ({ defaultValues, postId }: FormEditPostProps) => {
                             type="reset"
                             variant="secondary"
                             buttonProps={{
-                                form: modalId
+                                form: postId
                             }}
                         >
                             Desfazer
                         </Button>
                     </div>
                 </Form>
-            </Modal>
-        </>
+            </ListWrapper>
+        </PageLayout>
     );
 };
+
+export default FormEditPost;
