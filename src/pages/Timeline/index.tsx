@@ -18,8 +18,7 @@ const Timeline = () => {
   const [currentList, setCurrentList] = useState<Array<PostResponse>>([])
 
   const { getListPosts, postsList, requestStatus } = useListPosts()
-  // TODO: Get proper user profile
-  const { hasPermission } = usePermission('teacher');
+  const { hasPermission } = usePermission();
   const { loading, searchPost, posts } = useSearchPost();
 
   const pageState = loading ? 'loading' : requestStatus;

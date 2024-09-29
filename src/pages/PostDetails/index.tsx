@@ -18,8 +18,7 @@ import "./styles.css";
 const PostDetails = () => {
   const params = useParams();
   const navigate = useNavigate();
-  // TODO: Get proper user profile and improve name
-  const { hasPermission } = usePermission('teacher');
+  const { hasPermission } = usePermission();
 
   const id = params.postId ?? ''
 
