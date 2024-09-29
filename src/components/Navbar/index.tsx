@@ -1,12 +1,13 @@
 import { useNavigate } from "react-router-dom";
 
 import { Button } from "../../components/Button";
+import { usePermission } from "../../hooks/usePermission";
 import { Paths } from "../../routes/paths";
 import bloggingLogo from "/blogging.svg";
 
-// TODO: Checar se o usuário está logando e adicionar botão de logout
 export const Navbar = () => {
   const navigate = useNavigate();
+  const { hasPermission } = usePermission();
 
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary w-100">
@@ -20,7 +21,7 @@ export const Navbar = () => {
           <h4 className="m-0">Blogging</h4>
         </a>
         <Button onClick={() => navigate(Paths.LOGIN)} srLabel="Entrar na sua conta" variant="secondary">
-          Entrar
+          {hasPermission ? 'Sair' : 'Entrar'}
         </Button>
       </div>
     </nav>
