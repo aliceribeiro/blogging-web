@@ -6,7 +6,6 @@ import { Button } from "../../components/Button";
 import { Navbar } from "../../components/Navbar";
 import { Snackbar } from "../../components/Snackbar";
 import { Typography, TypographyVariant } from "../../components/Typography";
-import { usePermission } from "../../hooks/usePermission";
 import { useSnackbarContext } from "../../hooks/useSnackbarContext";
 import { Paths } from "../../routes/paths";
 
@@ -14,21 +13,18 @@ import "./styles.css";
 
 type PageLayoutProps = PropsWithChildren<{
   title?: string;
+  showCreatePostButton?: boolean;
   showNavbar?: boolean;
 }>;
 
 export const PageLayout = ({
   children,
   title,
+  showCreatePostButton = false,
   showNavbar = false,
 }: PageLayoutProps) => {
   const navigate = useNavigate();
   const { snackbar } = useSnackbarContext();
-  // TODO: Get proper user profile
-  const { hasPermission } = usePermission('teacher');
-
-  // TODO: Ajustar essa logiquinha aqui
-  const showCreatePostButton = title && hasPermission;
 
   return (
     <>

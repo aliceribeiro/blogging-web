@@ -34,7 +34,7 @@ const PostDetails = () => {
   }, [id]);
 
   return (
-    <PageLayout showNavbar title="Detalhes da publicação">
+    <PageLayout showCreatePostButton={hasPermission} showNavbar title="Detalhes da publicação">
       <ListWrapper onTryAgain={() => void getPostDetails()} status={requestStatus}>
         <section className="post-details-container">
           <header className="post-details-header">

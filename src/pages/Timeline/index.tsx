@@ -9,6 +9,7 @@ import { FormSearch } from "../../components/Form/FormSearch";
 import { PageLayout } from "../../templates/PageLayout";
 import { SearchFormValues } from "../../components/Form/FormSearch/FormSearchSchema";
 import { useListPosts } from "../../hooks/useListPosts";
+import { usePermission } from "../../hooks/usePermission";
 import { useSearchPost } from "../../hooks/useSearchPost";
 
 import styled from "./styles";
@@ -17,6 +18,8 @@ const Timeline = () => {
   const [currentList, setCurrentList] = useState<Array<PostResponse>>([])
 
   const { getListPosts, postsList, requestStatus } = useListPosts()
+  // TODO: Get proper user profile
+  const { hasPermission } = usePermission('teacher');
   const { loading, searchPost, posts } = useSearchPost();
 
   const pageState = loading ? 'loading' : requestStatus;
@@ -40,7 +43,7 @@ const Timeline = () => {
   }, []);
 
   return (
-    <PageLayout showNavbar title="Linha do tempo">
+    <PageLayout showCreatePostButton={hasPermission} showNavbar title="Linha do tempo">
       <styled.Container>
         <FormSearch
           id="search-post"
