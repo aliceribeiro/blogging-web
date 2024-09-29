@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import type { UserPayload } from "../api";
 
 import { useState } from "react";
