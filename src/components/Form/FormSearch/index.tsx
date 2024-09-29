@@ -31,7 +31,7 @@ const InputSearch = ({ fieldName, label, placeholder, srLabel }: InputSearchProp
         fieldState: { error }
     } = useController({ name: fieldName });
 
-    const hasError = Boolean(Object.keys(error ?? {}).length)
+    const hasError = Boolean(Object.keys(error ?? {}).length);
 
     return (
         <div className="search-input">

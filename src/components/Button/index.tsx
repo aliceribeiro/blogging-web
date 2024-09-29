@@ -1,6 +1,6 @@
 import type { MouseEventHandler, PropsWithChildren } from "react";
 
-import "./styles.css"
+import "./styles.css";
 
 /**
  * If type is submit or reset, it is necessary to provide formId

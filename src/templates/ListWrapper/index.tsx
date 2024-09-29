@@ -3,7 +3,7 @@ import type { PropsWithChildren } from "react";
 import { ErrorState } from "../../components/ErrorState";
 import { Skeleton } from "../../components/Skeleton";
 
-import "./styles.css"
+import "./styles.css";
 
 type ListWrapperProps = PropsWithChildren<{
     onTryAgain: () => void;

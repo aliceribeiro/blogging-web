@@ -1,6 +1,6 @@
 import type { AriaRole, PropsWithChildren } from "react"
 
-import "./styles.css"
+import "./styles.css";
 
 enum TypographyVariantEnum {
     'paragraph-xsmall-regular' = 'paragraph-xsmall-regular',

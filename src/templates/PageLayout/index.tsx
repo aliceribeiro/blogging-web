@@ -7,7 +7,7 @@ import { Typography, TypographyVariant } from "../../components/Typography";
 import { usePermission } from "../../hooks/usePermission";
 import { useSnackbar } from "../../hooks/useSnackbar";
 
-import "./styles.css"
+import "./styles.css";
 
 type PageLayoutProps = PropsWithChildren<{
   title?: string;

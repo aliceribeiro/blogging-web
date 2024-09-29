@@ -17,7 +17,7 @@ import { useCreatePost } from "../../hooks/useCreatePost";
 import { FormPostSchema, PostFormFields, PostFormValues } from "./FormPost.schema";
 import { Paths } from "../../routes/paths";
 
-import "./styles.css"
+import "./styles.css";
 
 const MODAL_ID = 'modal-create-post';
 const FORM_ID = 'create-post';
@@ -65,7 +65,8 @@ export const FormPost = () => {
             </Button>
             <Modal
                 id={MODAL_ID}
-                title="Criar uma nova publicação">
+                title="Criar uma nova publicação"
+            >
                 <Form id={FORM_ID} methods={methods} onSubmit={handleSubmit(handleSavePost)}>
                     <section className="form-post-body">
                         <FormTextField
