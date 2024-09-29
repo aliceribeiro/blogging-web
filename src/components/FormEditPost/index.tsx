@@ -1,6 +1,4 @@
-// TODO: Ajustar essa regra
 /* eslint-disable @typescript-eslint/no-misused-promises */
-
 import { useMemo } from 'react';
 
 import { useForm } from "react-hook-form";

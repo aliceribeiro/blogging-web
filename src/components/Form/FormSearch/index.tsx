@@ -1,4 +1,3 @@
-// TODO: Ajustar essa regra
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { useController, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";

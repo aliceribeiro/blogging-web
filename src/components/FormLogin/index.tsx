@@ -1,6 +1,4 @@
-// TODO: Ajustar essa regra
 /* eslint-disable @typescript-eslint/no-misused-promises */
-
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
