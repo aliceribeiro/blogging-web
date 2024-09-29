@@ -9,8 +9,6 @@ import { Typography, TypographyVariant } from "../../components/Typography";
 import { useSnackbarContext } from "../../hooks/useSnackbarContext";
 import { Paths } from "../../routes/paths";
 
-import "./styles.css";
-
 type PageLayoutProps = PropsWithChildren<{
   title?: string;
   showCreatePostButton?: boolean;
@@ -29,8 +27,8 @@ export const PageLayout = ({
   return (
     <>
       {showNavbar && <Navbar />}
-      <main className="container mt-5 mb-5">
-        <header className="header-container">
+      <main className="container my-5 w-100">
+        <header className="d-flex justify-content-between flex-wrap">
           {title && (
             <Typography component="h1" variant={TypographyVariant["title-bold"]}>
               {title}

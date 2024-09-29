@@ -64,7 +64,7 @@ export const FormSearch = ({
 
     return (
         <Form id={id} methods={methods} onSubmit={handleSubmit(onSubmit)}>
-            <div className="d-flex gap-1 mt-4">
+            <div className="d-flex gap-1 mt-4 flex-wrap">
                 <InputSearch
                     fieldName={SearchFormFields.word}
                     placeholder={placeholder}

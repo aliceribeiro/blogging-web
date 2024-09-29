@@ -1,7 +1,5 @@
 import { Typography, TypographyVariant } from "../../components/Typography";
 
-import "./styles.css";
-
 type AvatarProps = {
   src?: string;
   name?: string;

@@ -15,8 +15,6 @@ import { useEditPost } from "../../hooks/useEditPost";
 import { usePostDetails } from "../../hooks/usePostDetails";
 import { FormEditPostSchema, EditPostFormFields, EditPostFormValues } from "./FormEditPost.schema";
 
-import "./styles.css";
-
 const FormEditPost = () => {
     const params = useParams();
     const postId = params.postId ?? ''
@@ -64,7 +62,7 @@ const FormEditPost = () => {
         <PageLayout showNavbar title="Editar publicação">
             <ListWrapper onTryAgain={() => void getPostDetails()} status={requestStatus}>
                 <Form id={postId} methods={methods} onSubmit={handleSubmit(handleSaveEdition)}>
-                    <section className="form-edit-body">
+                    <section className="d-flex flex-column gap-3 my-2 mx-1">
                         <FormTextField
                             fieldName={EditPostFormFields.title}
                             label="Título"
@@ -76,7 +74,7 @@ const FormEditPost = () => {
                             srLabel="Campo para inserir o conteúdo da publicação"
                         />
                     </section>
-                    <div className="actions-container">
+                    <div className="d-flex justify-content-end gap-3 align-items-center">
                         <FormSubmitButton
                             loading={loading}
                             formId={postId}

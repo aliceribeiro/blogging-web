@@ -1,7 +1,5 @@
 import type { MouseEventHandler, PropsWithChildren } from "react";
 
-import "./styles.css";
-
 /**
  * If type is submit or reset, it is necessary to provide formId
  */
@@ -85,7 +83,7 @@ export const Button = ({
         <button
           aria-label={srLabel}
           disabled={disabled}
-          className={fullWidth ? `${className} btn-fullWidth` : className}
+          className={fullWidth ? `${className} w-100` : className}
           onClick={onClick}
           tabIndex={0}
           type={type}
