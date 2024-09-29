@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Typography, TypographyVariant } from "../../components/Typography";
 import { Paths } from "../../routes/paths";
 
-import "./styles.css"
+import "./styles.css";
 
 type CardPostProps = {
     post: PostResponse;
@@ -18,7 +18,7 @@ export const CardPost = ({ post }: CardPostProps) => {
 
     return (
         <div className="mb-3 custom-collapse">
-            <div className="card" onClick={() => navigate(`${Paths.POST_DETAILS}`, { state: { id } })}>
+            <div className="card" onClick={() => navigate(`${Paths.POST_DETAILS}`, { state: { id, title } })}>
                 <div className="card-header">
                     <Typography
                         className="post-card-title"

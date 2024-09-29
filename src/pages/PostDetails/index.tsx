@@ -1,25 +1,29 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 import { Avatar } from "../../components/Avatar";
-import { Button } from "../../components/Button";
+import { DeletePostTemplate } from "../../components/DeletePostTemplate";
+import { FormEditPost } from "../../components/FormEditPost";
 import { ListWrapper } from "../../templates/ListWrapper";
 import { PageLayout } from "../../templates/PageLayout";
+import { Typography, TypographyVariant } from "../../components/Typography";
+import { usePermission } from "../../hooks/usePermission";
 import { usePostDetails } from "../../hooks/usePostDetails"
-import { Paths } from "../../routes/paths";
-import bloggingLogo from "/blogging.svg";
 import DATA from "../../utils/date";
 
-import styled from "./styles";
+import "./styles.css";
 
 const PostDetails = () => {
   const location = useLocation();
-  const navigate = useNavigate();
+  // TODO: Get proper user profile and improve name
+  const { hasPermission } = usePermission('teacher');
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
   const id = String(location?.state?.id);
 
   const { getPostDetails, post, requestStatus } = usePostDetails(id);
+
+  const showActionButtons = hasPermission && Boolean(Object.keys(post ?? {}).length);
 
   useEffect(() => {
     void getPostDetails();
@@ -28,21 +32,37 @@ const PostDetails = () => {
 
   return (
     <PageLayout showNavbar title="Detalhes da publicação">
-      <styled.Flex>
-        <Button onClick={() => navigate(Paths.BASE)} type="button" variant="tertiary">
-          Voltar
-        </Button>
-      </styled.Flex>
       <ListWrapper onTryAgain={() => void getPostDetails()} status={requestStatus}>
-        <styled.Container>
-          <Avatar src={bloggingLogo} />
-          <styled.Title>{post?.title}</styled.Title>
-          <p>{post?.content}</p>
-          <div>
-            <styled.CreationDate>Data de criação:</styled.CreationDate>
-            <span>{DATA.format(new Date(String(post?.createdAt)), "dd/MM/yyyy")}</span>
-          </div>
-        </styled.Container>
+        <section className="post-details-container">
+          <header className="post-details-header">
+            <div>
+              <Typography component="h1" variant={TypographyVariant['subtitle-medium']}>{post?.title}</Typography>
+              <div className="publish-date-container">
+                <Typography component="p" variant={TypographyVariant['paragraph-xsmall-regular']}>
+                  Data da publicação: {DATA.format(new Date(String(post?.createdAt)), "dd/MM/yyyy")}
+                </Typography>
+                <Typography
+                  component="p"
+                  variant={TypographyVariant['paragraph-xsmall-regular']}
+                >
+                  Última edição: {DATA.format(new Date(String(post?.updatedAt ?? post?.createdAt)), "dd/MM/yyyy")}
+                </Typography>
+                <div className="author-name">
+                  <Avatar name={post?.author} size={32} />
+                  <Typography component="p">{post?.author}</Typography>
+                </div>
+              </div>
+            </div>
+          </header>
+          <hr />
+          <Typography component="p">{post?.content}</Typography>
+          {showActionButtons && (
+            <div className="actions-container">
+              <FormEditPost defaultValues={{ content: post?.content ?? '', title: post?.title ?? '' }} postId={id} />
+              <DeletePostTemplate postId={id} />
+            </div>
+          )}
+        </section>
       </ListWrapper>
     </PageLayout >
   );

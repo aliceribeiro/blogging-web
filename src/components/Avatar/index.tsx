@@ -1,4 +1,6 @@
-import "./styles.css"
+import { Typography, TypographyVariant } from "../../components/Typography";
+
+import "./styles.css";
 
 type AvatarProps = {
   src?: string;
@@ -6,23 +8,21 @@ type AvatarProps = {
   size?: number;
 }
 
-export const Avatar = ({ src, name, size = 50 }: AvatarProps) => (
+export const Avatar = ({ name, size = 50 }: AvatarProps) => (
   <div
     aria-hidden
-    className="d-flex align-items-center justify-content-center rounded-circle bg-secondary text-white"
+    className="d-flex align-items-center justify-content-center rounded-circle bg-primary text-white"
     style={{
       width: `${size}px`,
       height: `${size}px`,
       fontSize: `${size / 4}px`,
     }}
   >
-    {src ? (
-      <img
-        src={src}
-        className="rounded-circle avatar-image"
-      />
-    ) : (
-      <span>{name?.charAt(0).toUpperCase() || "?"}</span>
-    )}
+    <Typography
+      component="span"
+      variant={TypographyVariant['paragraph-sm-medium']}
+    >
+      {name?.charAt(0).toUpperCase()}
+    </Typography>
   </div>
 );

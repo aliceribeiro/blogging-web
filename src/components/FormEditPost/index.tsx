@@ -8,12 +8,15 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Modal as BootstrapModal } from 'bootstrap';
 
 import { Button } from "../Button";
+import { Form } from "../Form";
 import { FormSubmitButton } from "../Form/FormSubmitButton";
 import { FormTextArea } from "../Form/FormTextArea";
 import { FormTextField } from "../Form/FormTextField";
 import { Modal } from "../Modal";
 import { useEditPost } from "../../hooks/useEditPost";
 import { FormEditPostSchema, EditPostFormFields, EditPostFormValues } from "./FormEditPost.schema";
+
+import "./styles.css";
 
 type FormEditPostProps = {
     defaultValues: {
@@ -54,41 +57,44 @@ export const FormEditPost = ({ defaultValues, postId }: FormEditPostProps) => {
             <Button onClick={handleToggleModal} variant="secondary">
                 Editar
             </Button>
-            <Modal actions={<>
-                <FormSubmitButton
-                    loading={loading}
-                    formId={modalId}
-                    onSubmit={handleSubmit(handleSaveEdition)}
-                >
-                    Salvar
-                </FormSubmitButton>
-                <Button
-                    disabled={loading}
-                    onClick={handleReset}
-                    type="reset"
-                    variant="secondary"
-                    buttonProps={{
-                        form: modalId
-                    }}
-                >
-                    Desfazer
-                </Button>
-            </>}
+            <Modal
                 id={modalId}
                 title="Edição"
             >
-                <section className="form-edit-body">
-                    <FormTextField
-                        fieldName={EditPostFormFields.title}
-                        label="Título"
-                        srLabel="Campo para inserir o título da publicação"
-                    />
-                    <FormTextArea
-                        fieldName={EditPostFormFields.content}
-                        label="Conteúdo"
-                        srLabel="Campo para inserir o conteúdo da publicação"
-                    />
-                </section>
+                <Form id={modalId} methods={methods} onSubmit={handleSubmit(handleSaveEdition)}>
+                    <section className="form-edit-body">
+                        <FormTextField
+                            fieldName={EditPostFormFields.title}
+                            label="Título"
+                            srLabel="Campo para inserir o título da publicação"
+                        />
+                        <FormTextArea
+                            fieldName={EditPostFormFields.content}
+                            label="Conteúdo"
+                            srLabel="Campo para inserir o conteúdo da publicação"
+                        />
+                    </section>
+                    <div className="modal-footer custom-modal-footer">
+                        <FormSubmitButton
+                            loading={loading}
+                            formId={modalId}
+                            onSubmit={handleSubmit(handleSaveEdition)}
+                        >
+                            Salvar
+                        </FormSubmitButton>
+                        <Button
+                            disabled={loading}
+                            onClick={handleReset}
+                            type="reset"
+                            variant="secondary"
+                            buttonProps={{
+                                form: modalId
+                            }}
+                        >
+                            Desfazer
+                        </Button>
+                    </div>
+                </Form>
             </Modal>
         </>
     );
