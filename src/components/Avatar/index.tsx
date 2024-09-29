@@ -6,7 +6,7 @@ type AvatarProps = {
   size?: number;
 }
 
-export const Avatar = ({ name, size = 50 }: AvatarProps) => (
+export const Avatar = ({ name = '?', size = 50 }: AvatarProps) => (
   <div
     aria-hidden
     className="d-flex align-items-center justify-content-center rounded-circle bg-primary text-white"

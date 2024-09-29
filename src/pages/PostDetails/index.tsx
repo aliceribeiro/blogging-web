@@ -50,7 +50,7 @@ const PostDetails = () => {
                 </Typography>
                 <div className="author-name">
                   <Avatar name={post?.author} size={32} />
-                  <Typography component="p">{post?.author}</Typography>
+                  <Typography component="p">{post?.author ?? 'Desconhecido'}</Typography>
                 </div>
               </div>
             </div>
