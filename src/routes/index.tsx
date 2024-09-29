@@ -10,7 +10,6 @@ import { withProviders } from "../templates/withProviders";
 import { ErrorBoundary } from "../pages/ErrorBoundary";
 import { BasePaths, Paths } from "./paths";
 
-// TODO: Fica melhor em cada página
 const router = createBrowserRouter(
   [
     {
