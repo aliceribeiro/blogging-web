@@ -12,8 +12,6 @@ import { useLogin } from "../../hooks/useLogin";
 import { FormLoginSchema, LoginFormFields, LoginFormValues } from "./LoginFormSchema";
 import { Paths } from "../../routes/paths";
 
-import "./styles.css";
-
 const FORM_ID = 'login-user';
 const FORM_DEFAULT_VALUES = {
     username: '',
@@ -37,19 +35,21 @@ export const FormLogin = () => {
     return (
         <>
             <Form id={FORM_ID} methods={methods} onSubmit={handleSubmit(handleSubmitLogin)}>
-                <FormTextField
-                    fieldName={LoginFormFields.username}
-                    label="Usuário"
-                    placeholder="Digite o nome de usuário"
-                    srLabel="Campo para inserir o nome do usuário"
-                />
-                <FormPassword
-                    fieldName={LoginFormFields.password}
-                    label="Senha"
-                    placeholder="Digite a sua senha"
-                    srLabel="Campo para inserir a senha do usuário"
-                />
-                <div className="form-login-actions-container">
+                <section className="d-flex flex-column gap-3 mb-4">
+                    <FormTextField
+                        fieldName={LoginFormFields.username}
+                        label="Usuário"
+                        placeholder="Digite o nome de usuário"
+                        srLabel="Campo para inserir o nome do usuário"
+                    />
+                    <FormPassword
+                        fieldName={LoginFormFields.password}
+                        label="Senha"
+                        placeholder="Digite a sua senha"
+                        srLabel="Campo para inserir a senha do usuário"
+                    />
+                </section>
+                <div className="d-flex flex-column gap-2">
                     <FormSubmitButton
                         loading={loading}
                         formId={FORM_ID}

@@ -47,7 +47,6 @@ const Timeline = () => {
       <styled.Container>
         <FormSearch
           id="search-post"
-          label="Buscar publicação:"
           onSubmit={handleSubmitSearch}
           placeholder="Buscar"
           srLabel="Campo para buscar uma publicação"

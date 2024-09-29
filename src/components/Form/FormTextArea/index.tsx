@@ -13,20 +13,24 @@ export const FormTextArea = ({ fieldName, label, placeholder = '', srLabel }: Fo
         fieldState: { error }
     } = useController({ name: fieldName });
 
+    const hasError = Boolean(Object.keys(error ?? {}).length);
+
     return (
-        <div>
+        <div className="h-100">
             <label htmlFor={fieldName} className="form-label">{label}</label>
             <textarea
-                className="form-control"
+                className={`h-100 form-control form-control-md ${hasError ? 'is-invalid' : ''}`}
                 id={fieldName}
                 aria-label={srLabel}
                 placeholder={placeholder}
                 onChange={onChange}
                 value={value}
             />
-            <div className="invalid-feedback">
-                {error?.message}
-            </div>
+            {hasError && (
+                <div className="invalid-feedback d-block">
+                    {error?.message}
+                </div>
+            )}
         </div>
     );
 };

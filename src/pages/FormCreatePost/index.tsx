@@ -11,8 +11,6 @@ import { PageLayout } from "../../templates/PageLayout";
 import { useCreatePost } from "../../hooks/useCreatePost";
 import { FormPostSchema, PostFormFields, PostFormValues } from "./FormPost.schema";
 
-import "./styles.css";
-
 const FORM_ID = 'create-post';
 const FORM_DEFAULT_VALUES = {
     description: '',
@@ -40,7 +38,7 @@ const FormCreatePost = () => {
     return (
         <PageLayout showNavbar title="Criar uma nova publicação">
             <Form id={FORM_ID} methods={methods} onSubmit={handleSubmit(handleSavePost)}>
-                <section className="form-post-body">
+                <section className="d-flex flex-column gap-4 my-4 mx-2 form-post-body" style={{ height: '400px' }}>
                     <FormTextField
                         fieldName={PostFormFields.title}
                         label="Título"
@@ -54,7 +52,7 @@ const FormCreatePost = () => {
                         srLabel="Campo para inserir o conteúdo da publicação"
                     />
                 </section>
-                <div className="actions-container">
+                <div className="d-flex gap-3 justify-content-end mt-5">
                     <FormSubmitButton
                         loading={loading}
                         formId={FORM_ID}

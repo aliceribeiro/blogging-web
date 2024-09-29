@@ -6,10 +6,7 @@ import { Form } from "..";
 import { Button } from "../../../components/Button";
 import { FormSearchSchema, SearchFormFields, SearchFormValues } from "./FormSearchSchema";
 
-import "./styles.css";
-
 type BaseFormSearchProps = {
-    label: string;
     placeholder?: string;
     srLabel: string;
 }
@@ -24,7 +21,7 @@ type FormSearchProps = BaseFormSearchProps & {
     onSubmit: (data: SearchFormValues) => Promise<void>;
 };
 
-const InputSearch = ({ fieldName, label, placeholder, srLabel }: InputSearchProps) => {
+const InputSearch = ({ fieldName, placeholder, srLabel }: InputSearchProps) => {
     const {
         field: { onChange, value },
         fieldState: { error }
@@ -33,22 +30,16 @@ const InputSearch = ({ fieldName, label, placeholder, srLabel }: InputSearchProp
     const hasError = Boolean(Object.keys(error ?? {}).length);
 
     return (
-        <div className="search-input">
-            <label htmlFor={fieldName} className="form-label">{label}</label>
+        <div className="flex-grow-1">
             <input
                 id={fieldName}
-                className="form-control form-control-md"
+                className={`form-control form-control-md ${hasError ? 'is-invalid' : ''}`}
                 type="search"
                 placeholder={placeholder}
                 aria-label={srLabel}
                 onChange={onChange}
                 value={value}
             />
-            {hasError && (
-                <div className="invalid-feedback">
-                    {error?.message}
-                </div>
-            )}
         </div>
     );
 };
@@ -56,7 +47,6 @@ const InputSearch = ({ fieldName, label, placeholder, srLabel }: InputSearchProp
 export const FormSearch = ({
     disableButton = false,
     id,
-    label,
     onSubmit,
     placeholder = '',
     srLabel
@@ -68,18 +58,20 @@ export const FormSearch = ({
         resolver: yupResolver(FormSearchSchema)
     });
 
-    const { handleSubmit } = methods;
+    const { formState: { errors }, handleSubmit } = methods;
+
+    const hasError = Boolean(Object.keys(errors ?? {}).length);
 
     return (
         <Form id={id} methods={methods} onSubmit={handleSubmit(onSubmit)}>
-            <div className="search-input-container">
+            <div className="d-flex gap-1 mt-4">
                 <InputSearch
                     fieldName={SearchFormFields.word}
-                    label={label}
                     placeholder={placeholder}
                     srLabel={srLabel}
                 />
                 <Button
+                    size="sm"
                     variant="tertiary"
                     disabled={disableButton}
                     onClick={handleSubmit(onSubmit)}
@@ -91,6 +83,11 @@ export const FormSearch = ({
                     Buscar
                 </Button>
             </div>
+            {hasError && (
+                <div className="invalid-feedback d-block">
+                    {errors?.word?.message}
+                </div>
+            )}
         </Form>
     );
 };
