@@ -60,7 +60,7 @@ const PostDetails = () => {
           <Typography component="p">{post?.content}</Typography>
           {showActionButtons && (
             <div className="actions-container">
-              <Button onClick={() => navigate(Paths.EDIT_POST(id))} variant="secondary">
+              <Button onClick={() => navigate(Paths.EDIT_POST(id))} variant="primary">
                 Editar
               </Button>
               <DeletePostTemplate postId={id} />

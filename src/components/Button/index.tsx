@@ -22,9 +22,9 @@ const getButtonVariant = (variant: ButtonProps['variant']): string => {
     case 'primary':
       return 'btn btn-primary';
     case 'secondary':
-      return 'btn btn-secondary';
+      return 'btn btn-outline-primary';
     case 'tertiary':
-      return 'btn btn-white';
+      return 'btn btn-light';
     case 'danger':
       return 'btn btn-danger';
     default:

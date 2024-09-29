@@ -58,7 +58,7 @@ export const FormLogin = () => {
                     >
                         Entrar
                     </FormSubmitButton>
-                    <Button fullWidth onClick={() => navigate(Paths.BASE)} variant="tertiary">
+                    <Button fullWidth onClick={() => navigate(Paths.BASE)} variant="secondary">
                         Voltar
                     </Button>
                 </div>

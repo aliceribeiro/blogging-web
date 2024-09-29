@@ -3,7 +3,7 @@ import { useController, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import { Form } from "..";
-import { FormSubmitButton } from "../FormSubmitButton";
+import { Button } from "../../../components/Button";
 import { FormSearchSchema, SearchFormFields, SearchFormValues } from "./FormSearchSchema";
 
 import "./styles.css";
@@ -79,13 +79,17 @@ export const FormSearch = ({
                     placeholder={placeholder}
                     srLabel={srLabel}
                 />
-                <FormSubmitButton
+                <Button
+                    variant="tertiary"
                     disabled={disableButton}
-                    formId={id}
-                    onSubmit={handleSubmit(onSubmit)}
+                    onClick={handleSubmit(onSubmit)}
+                    type="submit"
+                    buttonProps={{
+                        form: id
+                    }}
                 >
                     Buscar
-                </FormSubmitButton>
+                </Button>
             </div>
         </Form>
     );
