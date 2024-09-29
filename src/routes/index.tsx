@@ -10,7 +10,7 @@ import { withProviders } from "../templates/withProviders";
 import { ErrorBoundary } from "../pages/ErrorBoundary";
 import { BasePaths, Paths } from "./paths";
 
-// Fica melhor em cada página
+// TODO: Fica melhor em cada página
 const router = createBrowserRouter(
   [
     {
@@ -25,7 +25,7 @@ const router = createBrowserRouter(
       errorElement: <ErrorBoundary />
     },
     {
-      path: Paths.POST_DETAILS,
+      path: `${BasePaths.POST_DETAILS}/:postId`,
       element: withProviders(<PostDetails />)(),
       errorElement: <ErrorBoundary />,
     },

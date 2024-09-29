@@ -18,7 +18,7 @@ export const CardPost = ({ post }: CardPostProps) => {
 
     return (
         <div className="mb-3 custom-collapse">
-            <div className="card" onClick={() => navigate(`${Paths.POST_DETAILS}`, { state: { id, title } })}>
+            <div className="card" onClick={() => navigate(Paths.POST_DETAILS(id))}>
                 <div className="card-header">
                     <Typography
                         className="post-card-title"

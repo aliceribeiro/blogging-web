@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { Avatar } from "../../components/Avatar";
 import { Button } from "../../components/Button";
@@ -17,12 +16,12 @@ import { Paths } from "../../routes/paths";
 import "./styles.css";
 
 const PostDetails = () => {
-  const location = useLocation();
+  const params = useParams();
   const navigate = useNavigate();
   // TODO: Get proper user profile and improve name
   const { hasPermission } = usePermission('teacher');
 
-  const id = String(location?.state?.id);
+  const id = params.postId ?? ''
 
   const { getPostDetails, post, requestStatus } = usePostDetails(id);
 

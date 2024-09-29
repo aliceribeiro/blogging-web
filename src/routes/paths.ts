@@ -9,7 +9,7 @@ export enum BasePaths {
 export const Paths = {
   BASE: BasePaths.BASE,
   LOGIN: BasePaths.LOGIN,
-  POST_DETAILS: BasePaths.POST_DETAILS,
+  POST_DETAILS: (id: string | number) => `${BasePaths.POST_DETAILS}/${id}`,
   CREATE_POST: BasePaths.CREATE_POST,
   EDIT_POST: (id: string | number) => `${BasePaths.EDIT_POST}/${id}`,
 };
