@@ -11,8 +11,8 @@ import { PageLayout } from "../../templates/PageLayout";
 import { Typography, TypographyVariant } from "../../components/Typography";
 import { usePermission } from "../../hooks/usePermission";
 import { usePostDetails } from "../../hooks/usePostDetails";
+import { dateHandler } from "../../utils/dateHandler";
 import { Paths } from "../../routes/paths";
-import DATA from "../../utils/date";
 
 import "./styles.css";
 
@@ -42,13 +42,13 @@ const PostDetails = () => {
               <Typography component="h1" variant={TypographyVariant['subtitle-medium']}>{post?.title}</Typography>
               <div className="publish-date-container">
                 <Typography component="p" variant={TypographyVariant['paragraph-xsmall-regular']}>
-                  Data da publicação: {DATA.format(new Date(String(post?.createdAt)), "dd/MM/yyyy")}
+                  Data da publicação: {dateHandler(post?.createdAt).format('DD/MM/YYYY')}
                 </Typography>
                 <Typography
                   component="p"
                   variant={TypographyVariant['paragraph-xsmall-regular']}
                 >
-                  Última edição: {DATA.format(new Date(String(post?.updatedAt ?? post?.createdAt)), "dd/MM/yyyy")}
+                  Última edição: {dateHandler(post?.updatedAt ?? post?.createdAt).format('DD/MM/YYYY')}
                 </Typography>
                 <div className="author-name">
                   <Avatar name={post?.author} size={32} />
