@@ -48,7 +48,7 @@ const FormCreatePost = () => {
                         srLabel="Campo para inserir o título da publicação"
                     />
                     <FormTextArea
-                        fieldName={PostFormFields.description}
+                        fieldName={PostFormFields.content}
                         label="Conteúdo"
                         placeholder="Digite aqui o que você deseja compartilhar."
                         srLabel="Campo para inserir o conteúdo da publicação"

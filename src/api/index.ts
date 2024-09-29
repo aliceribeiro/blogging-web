@@ -28,5 +28,9 @@ export const getPostByKeyWord = async (word: string): Promise<{ data: PostRespon
 export const getPosts = async (): Promise<{ data: PostResponse[] }> =>
     await api.get(BASE_URL);
 
+export const postPost = async (data: PostPayload): Promise<{ data: any }> =>
+    await api.post(BASE_URL, { data });
+
+
 export const putPost = async (id: string | number, data: PostPayload): Promise<{ data: any }> =>
     await api.put(`${BASE_URL}/${id}`, { data });

@@ -61,7 +61,7 @@ const FormEditPost = () => {
     }, [postId]);
 
     return (
-        <PageLayout showNavbar title="Detalhes da publicação">
+        <PageLayout showNavbar title="Editar publicação">
             <ListWrapper onTryAgain={() => void getPostDetails()} status={requestStatus}>
                 <Form id={postId} methods={methods} onSubmit={handleSubmit(handleSaveEdition)}>
                     <section className="form-edit-body">
