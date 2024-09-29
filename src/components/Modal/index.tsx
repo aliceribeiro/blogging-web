@@ -2,6 +2,8 @@ import type { PropsWithChildren, ReactNode } from "react";
 
 import { Typography, TypographyVariant } from "../Typography";
 
+import "./styles.css"
+
 type ModalProps = PropsWithChildren<{
     actions?: ReactNode;
     id: string;
@@ -17,7 +19,7 @@ export const Modal = ({
     <div id={id} className="modal fade" tabIndex={-1} aria-labelledby={id} aria-hidden="true">
         <div className="modal-dialog">
             <div className="modal-content">
-                <div className="modal-header">
+                <div className="modal-header custom-modal-header">
                     <Typography component="h1" variant={TypographyVariant['subtitle-medium']}>{title}</Typography>
                     <button
                         type="button"
@@ -30,7 +32,7 @@ export const Modal = ({
                 <div className="modal-body">
                     {children}
                 </div>
-                {actions ? <div className="modal-footer">{actions}</div> : null}
+                {actions ? <div className="modal-footer custom-modal-footer">{actions}</div> : null}
             </div>
         </div>
     </div >

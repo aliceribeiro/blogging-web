@@ -63,32 +63,10 @@ export const FormPost = () => {
             <Button onClick={handleToggleModal} variant="primary">
                 Criar nova publicação
             </Button>
-            <Form id={FORM_ID} methods={methods} onSubmit={handleSubmit(handleSavePost)}>
-                <Modal
-                    id={MODAL_ID}
-                    title="Criar uma nova publicação"
-                    actions={
-                        <>
-                            <FormSubmitButton
-                                loading={loading}
-                                formId={FORM_ID}
-                                onSubmit={handleSubmit(handleSavePost)}
-                            >
-                                Salvar publicação
-                            </FormSubmitButton>
-                            <Button
-                                disabled={loading}
-                                onClick={handleReset}
-                                type="reset"
-                                variant="secondary"
-                                buttonProps={{
-                                    form: FORM_ID
-                                }}
-                            >
-                                Limpar formulário
-                            </Button>
-                        </>
-                    }>
+            <Modal
+                id={MODAL_ID}
+                title="Criar uma nova publicação">
+                <Form id={FORM_ID} methods={methods} onSubmit={handleSubmit(handleSavePost)}>
                     <section className="form-post-body">
                         <FormTextField
                             fieldName={PostFormFields.title}
@@ -103,8 +81,28 @@ export const FormPost = () => {
                             srLabel="Campo para inserir o conteúdo da publicação"
                         />
                     </section>
-                </Modal>
-            </Form>
+                    <div className="modal-footer custom-modal-footer">
+                        <FormSubmitButton
+                            loading={loading}
+                            formId={FORM_ID}
+                            onSubmit={handleSubmit(handleSavePost)}
+                        >
+                            Salvar publicação
+                        </FormSubmitButton>
+                        <Button
+                            disabled={loading}
+                            onClick={handleReset}
+                            type="reset"
+                            variant="secondary"
+                            buttonProps={{
+                                form: FORM_ID
+                            }}
+                        >
+                            Limpar formulário
+                        </Button>
+                    </div>
+                </Form>
+            </Modal>
         </>
     );
 };

@@ -7,6 +7,8 @@ import { Typography, TypographyVariant } from "../../components/Typography";
 import { usePermission } from "../../hooks/usePermission";
 import { useSnackbar } from "../../hooks/useSnackbar";
 
+import "./styles.css"
+
 type PageLayoutProps = PropsWithChildren<{
   title?: string;
   showNavbar?: boolean;
@@ -18,20 +20,22 @@ export const PageLayout = ({
   showNavbar = false,
 }: PageLayoutProps) => {
   // TODO: Get proper user profile
-  const { hasPermission } = usePermission('student');
+  const { hasPermission } = usePermission('teacher');
   const snackbar = useSnackbar();
+
+  const showCreatePostButton = title && hasPermission;
 
   return (
     <>
       {showNavbar && <Navbar />}
       <main className="container mt-5 mb-5">
-        <header className="d-flex justify-content-between">
+        <header className="header-container">
           {title && (
             <Typography component="h1" variant={TypographyVariant["title-bold"]}>
               {title}
             </Typography>
           )}
-          {hasPermission && <FormPost />}
+          {showCreatePostButton && <FormPost />}
         </header>
         <section className="row justify-content-center">{children}</section>
       </main>
@@ -43,4 +47,3 @@ export const PageLayout = ({
     </>
   );
 };
-
