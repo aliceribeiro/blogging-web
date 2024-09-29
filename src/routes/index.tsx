@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 
+import FormCreatePost from "../pages/FormCreatePost";
 import Login from "../pages/Login";
 import PageNotFound from "../pages/PageNotFound";
 import PostDetails from "../pages/PostDetails";
@@ -26,6 +27,11 @@ const router = createBrowserRouter(
       errorElement: <ErrorBoundary />,
     },
     {
+      path: Paths.CREATE_POST,
+      element: <FormCreatePost />,
+      errorElement: <ErrorBoundary />,
+    },
+    {
       path: '*',
       element: <PageNotFound />,
     }
@@ -33,3 +39,4 @@ const router = createBrowserRouter(
 );
 
 export default router;
+

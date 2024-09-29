@@ -1,22 +1,21 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { useSnackbar } from "./useSnackbar";
+import { Paths } from "../routes/paths";
 
 type SavePostPayload = {
     description: string;
     title: string;
 };
 
-type UseCreatePostParams = {
-    onSuccess: () => void;
-};
-
-export const useCreatePost = ({ onSuccess }: UseCreatePostParams) => {
+export const useCreatePost = () => {
     const [loading, setLoading] = useState(false);
 
+    const navigate = useNavigate();
     const { onShowSnackbar } = useSnackbar();
 
-    const savePost = async ({ description, title }: SavePostPayload) => {
+    const savePost = async ({ description, title }: SavePostPayload): Promise<any> => {
         setLoading(true);
         try {
             // TODO: Send data to API
@@ -33,7 +32,7 @@ export const useCreatePost = ({ onSuccess }: UseCreatePostParams) => {
                 variant: 'success'
             });
 
-            onSuccess();
+            navigate(Paths.BASE);
         } catch {
             onShowSnackbar({
                 closable: true,

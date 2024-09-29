@@ -1,11 +1,14 @@
 import type { PropsWithChildren } from "react";
 
-import { FormPost } from "../../components/FormPost";
+import { useNavigate } from "react-router-dom";
+
+import { Button } from "../../components/Button";
 import { Navbar } from "../../components/Navbar";
 import { Snackbar } from "../../components/Snackbar";
 import { Typography, TypographyVariant } from "../../components/Typography";
 import { usePermission } from "../../hooks/usePermission";
 import { useSnackbar } from "../../hooks/useSnackbar";
+import { Paths } from "../../routes/paths"
 
 import "./styles.css";
 
@@ -19,9 +22,10 @@ export const PageLayout = ({
   title,
   showNavbar = false,
 }: PageLayoutProps) => {
+  const navigate = useNavigate();
+  const snackbar = useSnackbar();
   // TODO: Get proper user profile
   const { hasPermission } = usePermission('teacher');
-  const snackbar = useSnackbar();
 
   const showCreatePostButton = title && hasPermission;
 
@@ -35,7 +39,9 @@ export const PageLayout = ({
               {title}
             </Typography>
           )}
-          {showCreatePostButton && <FormPost />}
+          {showCreatePostButton && <Button onClick={() => navigate(Paths.CREATE_POST)} variant="primary">
+            Criar nova publicação
+          </Button>}
         </header>
         <section className="row justify-content-center">{children}</section>
       </main>
