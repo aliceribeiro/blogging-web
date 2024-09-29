@@ -1,11 +1,14 @@
-import { useState } from 'react';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { deletePost as deletePostService } from "../api";
 import { useSnackbarContext } from "./useSnackbarContext";
+import { Paths } from "../routes/paths";
 
 export const useDeletePost = (id: string | number) => {
     const [loading, setLoading] = useState(false);
 
+    const navigate = useNavigate();
     const { setSnackbar } = useSnackbarContext();
 
     const deletePost = async () => {
@@ -19,7 +22,7 @@ export const useDeletePost = (id: string | number) => {
                 variant: 'success'
             });
 
-            // TODO: Close modal and reload list
+            navigate(Paths.BASE);
         } catch {
             setSnackbar({
                 closable: true,
