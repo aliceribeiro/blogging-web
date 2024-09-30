@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { putPost } from "../api";
 import { useErrorHandler } from "./useErrorHandler";
 import { usePermission } from "./usePermission";
-import { useSnackbarContext } from "./useSnackbarContext";
+import { useSnackbar } from "./useSnackbar";
 import { Paths } from "../routes/paths";
 
 export const useEditPost = (id: string | number) => {
@@ -15,7 +15,7 @@ export const useEditPost = (id: string | number) => {
     const navigate = useNavigate();
     const { errorHandler } = useErrorHandler();
     const { token } = usePermission();
-    const { setSnackbar } = useSnackbarContext();
+    const { setSnackbar } = useSnackbar();
 
     const editPost = async (data: PostPayload) => {
         setLoading(true);

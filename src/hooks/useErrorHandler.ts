@@ -4,12 +4,12 @@ import type { ApiResponseDataUnknown } from "../api";
 
 import { useNavigate } from "react-router-dom";
 
-import { useSnackbarContext } from "./useSnackbarContext";
+import { useSnackbar } from "./useSnackbar";
 import { Paths } from "../routes/paths";
 
 export const useErrorHandler = () => {
     const navigate = useNavigate();
-    const { setSnackbar } = useSnackbarContext();
+    const { setSnackbar } = useSnackbar();
 
     const errorHandler = (e: any) => {
         const { statusCode } = e?.response?.data as ApiResponseDataUnknown;

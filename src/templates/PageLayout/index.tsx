@@ -6,7 +6,7 @@ import { Button } from "../../components/Button";
 import { Navbar } from "../../components/Navbar";
 import { Snackbar } from "../../components/Snackbar";
 import { Typography } from "../../components/Typography";
-import { useSnackbarContext } from "../../hooks/useSnackbarContext";
+import { useSnackbar } from "../../hooks/useSnackbar";
 import { Paths } from "../../routes/paths";
 
 type PageLayoutProps = PropsWithChildren<{
@@ -22,7 +22,7 @@ export const PageLayout = ({
   showNavbar = false,
 }: PageLayoutProps) => {
   const navigate = useNavigate();
-  const { snackbar } = useSnackbarContext();
+  const { snackbar } = useSnackbar();
 
   return (
     <>

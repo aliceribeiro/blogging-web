@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { postPost } from "../api";
 import { useErrorHandler } from "./useErrorHandler";
 import { usePermission } from "./usePermission";
-import { useSnackbarContext } from "./useSnackbarContext";
+import { useSnackbar } from "./useSnackbar";
 import { Paths } from "../routes/paths";
 
 export const useCreatePost = () => {
@@ -15,7 +15,7 @@ export const useCreatePost = () => {
     const navigate = useNavigate();
     const { errorHandler } = useErrorHandler();
     const { token } = usePermission();
-    const { setSnackbar } = useSnackbarContext();
+    const { setSnackbar } = useSnackbar();
 
     const savePost = async ({ content, title }: PostPayload): Promise<any> => {
         setLoading(true);

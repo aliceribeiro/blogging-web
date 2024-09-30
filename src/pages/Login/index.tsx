@@ -1,12 +1,12 @@
 import { FormLogin } from "../../components/FormLogin";
 import { Typography } from "../../components/Typography";
 import { Snackbar } from "../../components/Snackbar";
-import { useSnackbarContext } from "../../hooks/useSnackbarContext";
+import { useSnackbar } from "../../hooks/useSnackbar";
 
 import bloggingLogo from "/blogging.svg";
 
 const Login = () => {
-  const { snackbar } = useSnackbarContext();
+  const { snackbar } = useSnackbar();
 
   return (
     <main className="d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>

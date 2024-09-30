@@ -3,10 +3,10 @@ import type { PostResponse } from "../api";
 import { useState } from 'react';
 
 import { getPostByKeyWord } from "../api";
-import { useSnackbarContext } from "./useSnackbarContext";
+import { useSnackbar } from "./useSnackbar";
 
 export const useSearchPost = () => {
-    const { setSnackbar } = useSnackbarContext();
+    const { setSnackbar } = useSnackbar();
 
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);

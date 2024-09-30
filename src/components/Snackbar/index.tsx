@@ -1,15 +1,14 @@
-import { useEffect } from "react";
-
-import { Toast as SnackbarBootstrap } from "bootstrap";
-
 import "./styles.css";
 
-export type SnackbarProps = {
+export type SnackbarBaseProps = {
     closable: boolean;
     message: string;
-    open: boolean;
     variant: 'info' | 'error' | 'success';
-}
+};
+
+export type SnackbarProps = SnackbarBaseProps & {
+    open: boolean;
+};
 
 const getVariant = (variant: SnackbarProps['variant']): string => {
     switch (variant) {
@@ -24,17 +23,10 @@ const getVariant = (variant: SnackbarProps['variant']): string => {
     };
 };
 
-export const Snackbar = ({ closable, message, open, variant }: SnackbarProps) => {
-    const className = getVariant(variant);
-
-    const snackbarElement = document.getElementById('snackbar');
-    const snackbar = SnackbarBootstrap.getOrCreateInstance(snackbarElement!);
-
-    useEffect(() => {
-        if (open) {
-            snackbar.show();
-        }
-    }, [open]);
+export const Snackbar = ({ closable, message, open = false, variant }: SnackbarProps) => {
+    const classNameVariant = getVariant(variant);
+    // This is necessary due to first create instance call is not applying the proper class to show snackbar
+    const className = open ? `show ${classNameVariant} ` : classNameVariant
 
     return (
         <div className="snackbar-wrapper">
