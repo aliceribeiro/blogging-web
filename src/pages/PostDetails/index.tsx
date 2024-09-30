@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import { Button } from "../../components/Button";
 import { DeletePostTemplate } from "../../components/DeletePostTemplate";
-import { ListWrapper } from "../../templates/ListWrapper";
+import { PageContentWrapper } from "../../templates/PageContentWrapper";
 import { PageLayout } from "../../templates/PageLayout";
 import { Typography } from "../../components/Typography";
 import { usePermission } from "../../hooks/usePermission";
@@ -30,7 +30,11 @@ const PostDetails = () => {
 
   return (
     <PageLayout showCreatePostButton={hasPermission} showNavbar title="Detalhes da publicação">
-      <ListWrapper onTryAgain={() => void getPostDetails()} status={requestStatus}>
+      <PageContentWrapper
+        onTryAgain={() => void getPostDetails()}
+        status={requestStatus}
+        variant="circular"
+      >
         <section className="post-details-container">
           <header className="post-details-header">
             <div>
@@ -59,7 +63,7 @@ const PostDetails = () => {
             </div>
           )}
         </section>
-      </ListWrapper>
+      </PageContentWrapper>
     </PageLayout >
   );
 };

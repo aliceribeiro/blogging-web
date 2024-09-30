@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 import { CardPost } from "../../components/CardPost";
 import { EmptyState } from "../../components/EmptyState";
-import { ListWrapper } from "../../templates/ListWrapper";
+import { PageContentWrapper } from "../../templates/PageContentWrapper";
 import { FormSearch } from "../../components/Form/FormSearch";
 import { PageLayout } from "../../templates/PageLayout";
 import { SearchFormValues } from "../../components/Form/FormSearch/FormSearchSchema";
@@ -36,7 +36,7 @@ const Timeline = () => {
 
   useEffect(() => {
     void getListPosts()
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -48,7 +48,7 @@ const Timeline = () => {
         srLabel="Campo para buscar uma publicação"
         disableButton={loading}
       />
-      <ListWrapper onTryAgain={() => void getListPosts()} status={pageState}>
+      <PageContentWrapper onTryAgain={() => void getListPosts()} status={pageState}>
         {!currentList.length ?
           <EmptyState description="Que tal criar uma publicação com o tema que estava buscando?" />
           : (
@@ -58,7 +58,7 @@ const Timeline = () => {
               ))}
             </section>
           )}
-      </ListWrapper>
+      </PageContentWrapper>
     </PageLayout >
   );
 };

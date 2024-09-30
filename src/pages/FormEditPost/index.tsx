@@ -9,7 +9,7 @@ import { Form } from "../../components/Form";
 import { FormSubmitButton } from "../../components/Form/FormSubmitButton";
 import { FormTextArea } from "../../components/Form/FormTextArea";
 import { FormTextField } from "../../components/Form/FormTextField";
-import { ListWrapper } from "../../templates/ListWrapper";
+import { PageContentWrapper } from "../../templates/PageContentWrapper";
 import { PageLayout } from "../../templates/PageLayout";
 import { useEditPost } from "../../hooks/useEditPost";
 import { usePostDetails } from "../../hooks/usePostDetails";
@@ -58,7 +58,11 @@ const FormEditPost = () => {
 
     return (
         <PageLayout showNavbar title="Editar publicação">
-            <ListWrapper onTryAgain={() => void getPostDetails()} status={requestStatus}>
+            <PageContentWrapper
+                onTryAgain={() => void getPostDetails()}
+                status={requestStatus}
+                variant="circular"
+            >
                 <Form id={postId} methods={methods} onSubmit={handleSubmit(handleSaveEdition)}>
                     <section className="d-flex flex-column gap-3 my-2 mx-1">
                         <FormTextField
@@ -93,7 +97,7 @@ const FormEditPost = () => {
                         </Button>
                     </div>
                 </Form>
-            </ListWrapper>
+            </PageContentWrapper>
         </PageLayout>
     );
 };
