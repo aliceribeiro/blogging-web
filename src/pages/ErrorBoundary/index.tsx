@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "../../components/Button";
 import { FeedbackWrapper } from "../../templates/FeedbackWrapper";
 import { PageLayout } from "../../templates/PageLayout";
-import { Typography, TypographyVariant } from "../../components/Typography";
+import { Typography } from "../../components/Typography";
 import { Paths } from "../../routes/paths";
 
 export const ErrorBoundary = () => {
@@ -12,7 +12,7 @@ export const ErrorBoundary = () => {
     return (
         <PageLayout>
             <FeedbackWrapper>
-                <Typography component="h2" variant={TypographyVariant['title-bold']}>
+                <Typography component="h2" variant="title-bold">
                     Ops, ocorreu um problema!
                 </Typography>
                 <Typography>

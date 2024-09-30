@@ -1,5 +1,5 @@
 import { FormLogin } from "../../components/FormLogin";
-import { Typography, TypographyVariant } from "../../components/Typography";
+import { Typography } from "../../components/Typography";
 
 import bloggingLogo from "/blogging.svg";
 
@@ -11,7 +11,7 @@ const Login = () => (
     >
       <div className="d-flex flex-column align-items-center w-100">
         <img src={bloggingLogo} aria-hidden />
-        <Typography component="h1" variant={TypographyVariant['title-bold']}>
+        <Typography component="h1" variant="title-bold">
           Blogging
         </Typography>
         <FormLogin />

@@ -50,12 +50,10 @@ const FormEditPost = () => {
     useEffect(() => {
         // This is necessary so default values is set on form fields
         reset(defaultValues);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [post]);
 
     useEffect(() => {
         void getPostDetails();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [postId]);
 
     return (

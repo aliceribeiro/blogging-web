@@ -34,7 +34,6 @@ export const Snackbar = ({ closable, message, open, variant }: SnackbarProps) =>
         if (open) {
             snackbar.show();
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [open]);
 
     return (

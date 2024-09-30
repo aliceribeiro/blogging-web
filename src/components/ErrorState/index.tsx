@@ -1,6 +1,6 @@
 import { Button } from "../../components/Button";
 import { FeedbackWrapper } from "../../templates/FeedbackWrapper";
-import { Typography, TypographyVariant } from "../../components/Typography";
+import { Typography } from "../../components/Typography";
 
 type ErrorStateProps = {
     onTryAgain: () => void;
@@ -8,7 +8,7 @@ type ErrorStateProps = {
 
 export const ErrorState = ({ onTryAgain }: ErrorStateProps) => (
     <FeedbackWrapper>
-        <Typography component='h2' variant={TypographyVariant['subtitle-bold']}>
+        <Typography component='h2' variant="subtitle-bold">
             Ocorreu um erro
         </Typography>
         <Typography className='error-text'>

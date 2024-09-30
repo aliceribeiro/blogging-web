@@ -4,7 +4,7 @@ import { Modal as BootstrapModal } from 'bootstrap';
 
 import { Button } from "../Button";
 import { Modal } from "../Modal";
-import { Typography, TypographyVariant } from "../Typography";
+import { Typography } from "../Typography";
 import { useDeletePost } from "../../hooks/useDeletePost";
 
 type DeletePostTemplateProps = {
@@ -45,7 +45,7 @@ export const DeletePostTemplate = ({ postId }: DeletePostTemplateProps) => {
                 id={modalId}
                 title="Tem certeza que deseja excluir a publicação?"
             >
-                <Typography component="p" variant={TypographyVariant['paragraph-lg-regular']}>
+                <Typography component="p" variant="paragraph-lg-regular">
                     Atenção, pois essa ação não poderá ser desfeita.
                 </Typography>
             </Modal>

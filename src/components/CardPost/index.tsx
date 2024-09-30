@@ -2,7 +2,7 @@ import type { PostResponse } from "../../api";
 
 import { useNavigate } from "react-router-dom";
 
-import { Typography, TypographyVariant } from "../../components/Typography";
+import { Typography } from "../../components/Typography";
 import { Paths } from "../../routes/paths";
 
 import "./styles.css";
@@ -23,7 +23,7 @@ export const CardPost = ({ post }: CardPostProps) => {
                     <Typography
                         className="post-card-title"
                         component="p"
-                        variant={TypographyVariant['subtitle-medium']}
+                        variant="subtitle-medium"
                     >
                         {title}
                     </Typography>
@@ -33,7 +33,7 @@ export const CardPost = ({ post }: CardPostProps) => {
                         <Typography
                             className="post-card-content"
                             component="p"
-                            variant={TypographyVariant['paragraph-lg-regular']}
+                            variant="paragraph-lg-regular"
                         >
                             {content}
                         </Typography>

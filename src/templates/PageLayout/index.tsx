@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "../../components/Button";
 import { Navbar } from "../../components/Navbar";
 import { Snackbar } from "../../components/Snackbar";
-import { Typography, TypographyVariant } from "../../components/Typography";
+import { Typography } from "../../components/Typography";
 import { useSnackbarContext } from "../../hooks/useSnackbarContext";
 import { Paths } from "../../routes/paths";
 
@@ -30,7 +30,7 @@ export const PageLayout = ({
       <main className="container my-5 w-100">
         <header className="d-flex justify-content-between flex-wrap">
           {title && (
-            <Typography component="h1" variant={TypographyVariant["title-bold"]}>
+            <Typography component="h1" variant="title-bold">
               {title}
             </Typography>
           )}

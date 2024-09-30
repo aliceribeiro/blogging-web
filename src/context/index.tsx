@@ -24,7 +24,6 @@ export const SnackbarProvider = ({ children }: SnackbarProviderProps) => {
     const memoizedSnackbar = useMemo(() => ({
         snackbar,
         setSnackbar: handleShowSnackbar
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }), [snackbar, setSnackbar])
 
     return (

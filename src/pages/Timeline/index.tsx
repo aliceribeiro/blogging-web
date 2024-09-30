@@ -38,7 +38,6 @@ const Timeline = () => {
 
   useEffect(() => {
     void getListPosts()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

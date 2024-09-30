@@ -1,38 +1,43 @@
 import type { AriaRole, PropsWithChildren } from "react"
 
-import "./styles.css";
-
-enum TypographyVariantEnum {
-    'paragraph-xsmall-regular' = 'paragraph-xsmall-regular',
-    'paragraph-sm-regular' = 'paragraph-sm-regular',
-    'paragraph-sm-medium' = 'paragraph-sm-medium',
-    'paragraph-lg-regular' = 'paragraph-lg-regular',
-    'subtitle-medium' = 'subtitle-medium',
-    'subtitle-bold' = 'subtitle-bold',
-    'title-bold' = 'title-bold',
-}
-
-export const TypographyVariant = {
-    'paragraph-xsmall-regular': TypographyVariantEnum['paragraph-xsmall-regular'],
-    'paragraph-sm-regular': TypographyVariantEnum['paragraph-sm-regular'],
-    'paragraph-sm-medium': TypographyVariantEnum['paragraph-sm-medium'],
-    'paragraph-lg-regular': TypographyVariantEnum['paragraph-lg-regular'],
-    'subtitle-medium': TypographyVariantEnum['subtitle-medium'],
-    'subtitle-bold': TypographyVariantEnum['subtitle-bold'],
-    'title-bold': TypographyVariantEnum['title-bold'],
+const getTypographyVariant = (variant: string): string => {
+    switch (variant) {
+        case 'paragraph-xsmall-regular':
+            return 'fs-6 text fw-normal';
+        case 'paragraph-sm-regular':
+            return 'fs-5 text fw-normal';
+        case 'paragraph-sm-medium':
+            return 'fs-4 text fw-medium';
+        case 'paragraph-lg-regular':
+            return 'fs-4 text fw-normal';
+        case 'subtitle-medium':
+            return 'fs-3 text fw-medium';
+        case 'subtitle-bold':
+            return 'fs-3 text fw-semibold';
+        case 'title-bold':
+            return 'fs-2 text fw-semibold';
+        default:
+            return 'fs-4 text fw-normal';
+    };
 }
 
 type TypographyProps = PropsWithChildren<{
     className?: string
     component?: AriaRole
-    variant?: TypographyVariantEnum
+    variant?:
+    'paragraph-xsmall-regular' | 'paragraph-sm-regular' | 'paragraph-sm-medium' |
+    'paragraph-lg-regular' | 'subtitle-medium' | 'subtitle-bold' | 'title-bold'
 }>
 
 export const Typography = ({
     children,
     className = '',
     component = 'p',
-    variant = TypographyVariant['paragraph-lg-regular']
-}: TypographyProps) => (
-    <p role={component} className={`${variant} text-default-style ${className}`}>{children}</p>
-)
+    variant = 'paragraph-sm-regular',
+}: TypographyProps) => {
+    const variantClass = getTypographyVariant(variant)
+
+    return (
+        <p role={component} className={`${variantClass} ${className}`}>{children}</p>
+    );
+};

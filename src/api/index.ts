@@ -54,7 +54,7 @@ export const getPostByKeyWord = async (word: string, token: string): Promise<Pos
 
 export const getPosts = async (): Promise<PostResponse[]> => {
     const { data } = await api.get<ApiResponse<PostResponse[]>>(BASE_URL_POSTS);
-    return data;
+    return data.data;
 };
 
 

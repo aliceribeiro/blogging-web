@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -6,7 +5,7 @@ import { Button } from "../../components/Button";
 import { DeletePostTemplate } from "../../components/DeletePostTemplate";
 import { ListWrapper } from "../../templates/ListWrapper";
 import { PageLayout } from "../../templates/PageLayout";
-import { Typography, TypographyVariant } from "../../components/Typography";
+import { Typography } from "../../components/Typography";
 import { usePermission } from "../../hooks/usePermission";
 import { usePostDetails } from "../../hooks/usePostDetails";
 import { dateHandler } from "../../utils/dateHandler";
@@ -27,7 +26,6 @@ const PostDetails = () => {
 
   useEffect(() => {
     void getPostDetails();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   return (
@@ -36,14 +34,14 @@ const PostDetails = () => {
         <section className="post-details-container">
           <header className="post-details-header">
             <div>
-              <Typography component="h1" variant={TypographyVariant['subtitle-medium']}>{post?.title}</Typography>
+              <Typography component="h1" variant="subtitle-medium">{post?.title}</Typography>
               <div className="publish-date-container">
-                <Typography component="p" variant={TypographyVariant['paragraph-xsmall-regular']}>
+                <Typography component="p" variant="paragraph-xsmall-regular">
                   Data da publicação: {dateHandler(post?.createdAt).format('DD/MM/YYYY')}
                 </Typography>
                 <Typography
                   component="p"
-                  variant={TypographyVariant['paragraph-xsmall-regular']}
+                  variant="paragraph-xsmall-regular"
                 >
                   Última edição: {dateHandler(post?.updatedAt ?? post?.createdAt).format('DD/MM/YYYY')}
                 </Typography>
@@ -62,7 +60,7 @@ const PostDetails = () => {
           )}
         </section>
       </ListWrapper>
-    </PageLayout>
+    </PageLayout >
   );
 };
 

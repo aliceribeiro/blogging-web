@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "../../components/Button";
 import { FeedbackWrapper } from "../../templates/FeedbackWrapper";
 import { PageLayout } from "../../templates/PageLayout";
-import { Typography, TypographyVariant } from "../../components/Typography";
+import { Typography } from "../../components/Typography";
 import { Paths } from "../../routes/paths";
 
 const PageNotFound = () => {
@@ -12,7 +12,7 @@ const PageNotFound = () => {
     return (
         <PageLayout>
             <FeedbackWrapper>
-                <Typography component="h1" variant={TypographyVariant['title-bold']}>
+                <Typography component="h1" variant="title-bold">
                     Ops, página não econtrada!
                 </Typography>
                 <Typography>

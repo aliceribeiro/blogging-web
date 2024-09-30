@@ -1,5 +1,5 @@
 import { FeedbackWrapper } from "../../templates/FeedbackWrapper";
-import { Typography, TypographyVariant } from "../../components/Typography";
+import { Typography } from "../../components/Typography";
 
 type EmptyStateProps = {
     description: string;
@@ -8,7 +8,7 @@ type EmptyStateProps = {
 
 export const EmptyState = ({ description, title }: EmptyStateProps) => (
     <FeedbackWrapper>
-        <Typography component='h2' variant={TypographyVariant['subtitle-bold']}>
+        <Typography component='h2' variant="subtitle-bold">
             {title || "Nenhuma publicação para exibir"}
         </Typography>
         <Typography>

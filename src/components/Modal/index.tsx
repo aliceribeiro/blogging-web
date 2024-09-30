@@ -1,6 +1,6 @@
 import type { PropsWithChildren, ReactNode } from "react";
 
-import { Typography, TypographyVariant } from "../Typography";
+import { Typography } from "../Typography";
 
 type ModalProps = PropsWithChildren<{
     actions?: ReactNode;
@@ -18,7 +18,7 @@ export const Modal = ({
         <div className="modal-dialog">
             <div className="modal-content">
                 <div className="modal-header border-0">
-                    <Typography component="h1" variant={TypographyVariant['subtitle-medium']}>{title}</Typography>
+                    <Typography component="h1" variant="subtitle-medium">{title}</Typography>
                     <button
                         type="button"
                         className="btn-close"
