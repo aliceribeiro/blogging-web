@@ -43,13 +43,9 @@ export const getPostById = async (id: string | number): Promise<PostResponse> =>
     return data.data;
 };
 
-export const getPostByKeyWord = async (word: string, token: string): Promise<PostResponse[]> => {
-    const { data } = await api.get<ApiResponse<PostResponse[]>>(`${BASE_URL_POSTS}/search?keyword=${word}`, null, {
-        headers: {
-            'authorization': token,
-        },
-    });
-    return data;
+export const getPostByKeyWord = async (word: string): Promise<PostResponse[]> => {
+    const { data } = await api.get<ApiResponse<PostResponse[]>>(`${BASE_URL_POSTS}/search?keyword=${word}`);
+    return data.data;
 };
 
 export const getPosts = async (): Promise<PostResponse[]> => {

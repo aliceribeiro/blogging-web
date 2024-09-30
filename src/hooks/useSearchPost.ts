@@ -3,11 +3,9 @@ import type { PostResponse } from "../api";
 import { useState } from 'react';
 
 import { getPostByKeyWord } from "../api";
-import { usePermission } from "./usePermission";
 import { useSnackbarContext } from "./useSnackbarContext";
 
 export const useSearchPost = () => {
-    const { token } = usePermission();
     const { setSnackbar } = useSnackbarContext();
 
     const [error, setError] = useState(false);
@@ -18,7 +16,7 @@ export const useSearchPost = () => {
         setError(false);
         setLoading(true);
         try {
-            const data = await getPostByKeyWord(word, token);
+            const data = await getPostByKeyWord(word);
             setPosts(data);
         } catch {
             setSnackbar({

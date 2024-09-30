@@ -13,9 +13,9 @@ import { usePermission } from "../../hooks/usePermission";
 import { useSearchPost } from "../../hooks/useSearchPost";
 
 const Timeline = () => {
-  const [currentList, setCurrentList] = useState<Array<PostResponse>>([])
+  const [currentList, setCurrentList] = useState<Array<PostResponse>>([]);
 
-  const { getListPosts, postsList, requestStatus } = useListPosts()
+  const { getListPosts, postsList, requestStatus } = useListPosts();
   const { hasPermission } = usePermission();
   const { loading, searchPost, posts } = useSearchPost();
 
@@ -36,6 +36,7 @@ const Timeline = () => {
 
   useEffect(() => {
     void getListPosts()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
