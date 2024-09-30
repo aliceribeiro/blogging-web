@@ -4,6 +4,11 @@
     align-items: center;
 }
 
+.custom-collapse:hover {
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    cursor: pointer;
+}
+
 .post-card-content {
     display: -webkit-box;
     -webkit-box-orient: vertical;

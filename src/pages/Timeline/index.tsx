@@ -12,8 +12,6 @@ import { useListPosts } from "../../hooks/useListPosts";
 import { usePermission } from "../../hooks/usePermission";
 import { useSearchPost } from "../../hooks/useSearchPost";
 
-import styled from "./styles";
-
 const Timeline = () => {
   const [currentList, setCurrentList] = useState<Array<PostResponse>>([])
 
@@ -42,27 +40,25 @@ const Timeline = () => {
 
   return (
     <PageLayout showCreatePostButton={hasPermission} showNavbar title="Linha do tempo">
-      <styled.Container>
-        <FormSearch
-          id="search-post"
-          onSubmit={handleSubmitSearch}
-          placeholder="Buscar"
-          srLabel="Campo para buscar uma publicação"
-          disableButton={loading}
-        />
-        <ListWrapper onTryAgain={() => void getListPosts()} status={pageState}>
-          {!currentList.length ?
-            <EmptyState description="Que tal criar uma publicação com o tema que estava buscando?" />
-            : (
-              <section>
-                {currentList.map((post, index) => (
-                  <CardPost key={index} post={post} />
-                ))}
-              </section>
-            )}
-        </ListWrapper>
-      </styled.Container>
-    </PageLayout>
+      <FormSearch
+        id="search-post"
+        onSubmit={handleSubmitSearch}
+        placeholder="Buscar"
+        srLabel="Campo para buscar uma publicação"
+        disableButton={loading}
+      />
+      <ListWrapper onTryAgain={() => void getListPosts()} status={pageState}>
+        {!currentList.length ?
+          <EmptyState description="Que tal criar uma publicação com o tema que estava buscando?" />
+          : (
+            <section>
+              {currentList.map((post, index) => (
+                <CardPost key={index} post={post} />
+              ))}
+            </section>
+          )}
+      </ListWrapper>
+    </PageLayout >
   );
 };
 
