@@ -7,7 +7,7 @@ export type SnackbarBaseProps = {
 };
 
 export type SnackbarProps = SnackbarBaseProps & {
-    open: boolean;
+    open?: boolean;
 };
 
 const getVariant = (variant: SnackbarProps['variant']): string => {
@@ -23,7 +23,7 @@ const getVariant = (variant: SnackbarProps['variant']): string => {
     };
 };
 
-export const Snackbar = ({ closable, message, open = false, variant }: SnackbarProps) => {
+export const Snackbar = ({ closable, message, open, variant }: SnackbarProps) => {
     const classNameVariant = getVariant(variant);
     // This is necessary due to first create instance call is not applying the proper class to show snackbar
     const className = open ? `show ${classNameVariant} ` : classNameVariant
@@ -36,7 +36,6 @@ export const Snackbar = ({ closable, message, open = false, variant }: SnackbarP
                 role="alert"
                 aria-live="assertive"
                 aria-atomic="true"
-                data-bs-autohide="false"
             >
                 <div className="d-flex snackbar-content">
                     <div className="toast-body text-light">

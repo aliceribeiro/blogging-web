@@ -1,6 +1,6 @@
 import type { SnackbarBaseProps } from "../components/Snackbar";
 
-import { useContext } from "react"
+import { useContext } from "react";
 import { Toast as SnackbarBootstrap } from "bootstrap";
 
 import { SnackbarContext } from "../context/snackbar";
@@ -14,7 +14,7 @@ export const useSnackbar = () => {
     const handleShowSnackbar = (data: SnackbarBaseProps) => {
         setSnackbar({ ...data, open: true })
         snackbarInstance.show();
-    }
+    };
 
     return {
         snackbar,

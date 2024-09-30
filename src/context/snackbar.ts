@@ -2,11 +2,11 @@ import type { SnackbarProps } from "../components/Snackbar";
 
 import { createContext } from "react";
 
-export const DEFAULT_SNACKBAR_STATE = {
+export const DEFAULT_SNACKBAR_STATE: SnackbarProps = {
     closable: true,
     message: '',
     open: false,
-    variant: 'info' as SnackbarProps['variant'],
+    variant: 'info',
 };
 
 export type SnackbarContextState = {
