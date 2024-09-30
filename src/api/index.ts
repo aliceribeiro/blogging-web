@@ -51,7 +51,6 @@ export const getPostById = async (id: string | number): Promise<PostResponse> =>
 
 export const getPostByKeyWord = async (word: string): Promise<PostResponse[]> => {
     const { data } = await api.get<ApiResponse<PostResponse[]>>(`${BASE_URL_POSTS}/search?keyword=${word}`);
-
     return data.data;
 };
 
