@@ -6,7 +6,7 @@ type ApiResponse<T> = {
     statusCode: number;
 };
 
-type ApiResponseDataUnknown = ApiResponse<Record<string, unknown>>;
+export type ApiResponseDataUnknown = ApiResponse<Record<string, unknown>>;
 
 type Token = {
     token: string;

@@ -12,14 +12,13 @@ type DeletePostTemplateProps = {
 };
 
 export const DeletePostTemplate = ({ postId }: DeletePostTemplateProps) => {
-    const modalId = useMemo(() => (`modal-delete-post-${postId}`), [postId])
-
-    const { loading, deletePost } = useDeletePost(postId)
-
+    const modalId = useMemo(() => (`modal-delete-post-${postId}`), [postId]);
     const handleToggleModal = () => {
         const modal = BootstrapModal.getOrCreateInstance(document.getElementById(modalId)!);
         modal.toggle();
     };
+
+    const { loading, deletePost } = useDeletePost({ id: postId, onToggleModal: handleToggleModal });
 
     return (
         <>
