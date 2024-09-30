@@ -16,5 +16,3 @@ export const Skeleton = ({ height, srLabel = 'Carregando', styles, width }: Skel
         <span className="sr-only">{srLabel}</span>
     </div>
 );
-
-// ta parecendeo
