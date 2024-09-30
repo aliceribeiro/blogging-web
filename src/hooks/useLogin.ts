@@ -22,7 +22,7 @@ export const useLogin = () => {
         } catch {
             setSnackbar({
                 closable: true,
-                message: '"Não foi possível fazer login. Por favor, tente novamente mais tarde.',
+                message: 'Não foi possível fazer login. Por favor, tente novamente mais tarde.',
                 variant: 'error'
             });
         } finally {
