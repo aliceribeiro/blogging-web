@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
 import type { ApiResponseDataUnknown } from "../api";
 
 import { useNavigate } from "react-router-dom";
@@ -11,7 +10,7 @@ export const useErrorHandler = () => {
     const navigate = useNavigate();
     const { setSnackbar } = useSnackbar();
 
-    const errorHandler = (e: any) => {
+    const errorHandler = (e: any, message: string) => {
         const { statusCode } = e?.response?.data as ApiResponseDataUnknown;
 
         if (statusCode == 401) {
@@ -26,10 +25,14 @@ export const useErrorHandler = () => {
             navigate(Paths.LOGIN);
 
             return;
+        } else {
+            setSnackbar({
+                closable: true,
+                message,
+                variant: 'error'
+            });
         };
-
-        return e;
-    }
+    };
 
     return {
         errorHandler,

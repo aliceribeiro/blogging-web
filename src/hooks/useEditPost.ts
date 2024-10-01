@@ -30,13 +30,7 @@ export const useEditPost = (id: string | number) => {
 
             navigate(Paths.BASE);
         } catch (e: unknown) {
-            errorHandler(e);
-
-            setSnackbar({
-                closable: true,
-                message: 'Não foi possível salvar a edição. Por favor, tente novamente mais tarde.',
-                variant: 'error'
-            });
+            errorHandler(e, 'Não foi possível salvar a edição. Por favor, tente novamente mais tarde.');
         } finally {
             setLoading(false);
         };
