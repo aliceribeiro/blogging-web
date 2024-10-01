@@ -13,7 +13,7 @@ import { FormPostSchema, PostFormFields, PostFormValues } from "./FormPost.schem
 
 const FORM_ID = 'create-post';
 const FORM_DEFAULT_VALUES = {
-    description: '',
+    content: '',
     title: '',
 };
 
