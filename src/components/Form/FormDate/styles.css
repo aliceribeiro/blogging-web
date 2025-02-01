@@ -1,0 +1,14 @@
+.form-date-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-date-icon {
+    fill: #4a87e0;
+    ;
+}
+
+.form-date-input {
+    /* Necessary to subscribe date picker lib style */
+    padding-left: 32px !important;
+}
