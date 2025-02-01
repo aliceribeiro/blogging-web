@@ -1,6 +1,10 @@
 # Blogging WEB
 
-API do Grupo 3 da Pós Graduação Full Stack Development - FIAP
+Aplicação web do Grupo 3 da Pós Graduação Full Stack Development - FIAP
+
+<div align="center">
+    <img src="https://imgur.com/CLhqPLM.png">
+</div>
 
 ## 🚀 Tecnologias
 
@@ -19,44 +23,50 @@ O projeto foi desenvolvido utilizando as seguintes tecnologias:
 - [Node.js](https://nodejs.org/) v18+ e [NPM](https://www.npmjs.com/) para rodar o projeto
 
 ## 💻 Como baixar e inicializar o projeto
+
 1. Clonar o repositório
 
 ```shell
     git clone https://github.com/aliceribeiro/blogging-web.git
 ```
+
 2. Entrar no diretório
 
 ```shell
     cd blogging-web
 ```
+
 3. Instalar as dependências
 
 ```shell
     npm install
 ```
+
 4. Inicializar o projeto
 
 ```shell
     npm run dev
 ```
 
+ 💡 A aplicação estará disponível em http://localhost:5173
+
 ## 🗂️ Arquitetura do repositório
+
 ```
- BLOGGING-WEB/ 
- ├── src/ 
- │ ├── components/ 
- │ ├── context/ 
- │ ├── hooks/ 
- │ ├── pages/ 
+ BLOGGING-WEB/
+ ├── src/
+ │ ├── api/
+ │ ├── components/
+ │ ├── context/
+ │ ├── hooks/
+ │ ├── pages/
  │ ├── routes/
  │ ├── templates/
  │ ├── utils/
- │ └── ... 
- ├── .env 
- ├── package.json 
- ├── tsconfig.json 
+ │ └── ...
+ ├── .env
+ ├── package.json
+ ├── tsconfig.json
  └── ...
 
 ```
-
-
