@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 
-import { UserProfile } from "../api";
+import { UserProfiles } from "../model/enums/UserProfiles";
 
 export const usePermission = () => {
     const [token, setToken] = useState('');
-    const [userProfile, setUserProfile] = useState<UserProfile | undefined>(undefined);
+    const [userProfile, setUserProfile] = useState<UserProfiles | undefined>(undefined);
 
     const hasPermission = Boolean(token);
 
     useEffect(() => {
-        const profile = window.localStorage.getItem('userProfile') as UserProfile;
+        const profile = window.localStorage.getItem('userProfile') as UserProfiles;
         const userToken = window.localStorage.getItem('userToken');
 
         if (profile) {

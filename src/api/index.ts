@@ -1,3 +1,4 @@
+import { UserProfiles } from "../model/enums/UserProfiles";
 import { api } from "./config";
 
 const BASE_URL_EVENTS = '/events';
@@ -14,26 +15,28 @@ export type ApiResponseDataUnknown = ApiResponse<Record<string, unknown>>;
 
 export type EventsResponse = {
     id: string;
+    adminBy: UserProfiles;
     createdAt: Date;
     createdBy: string;
     endDate: Date;
     name: string;
-    public: string;
+    public: UserProfiles;
     startDate: Date;
     updatedAt: Date;
 };
 
 export type EventPayload = {
+    adminBy: UserProfiles;
     endDate: Date;
     name: string;
-    public: string;
+    public: UserProfiles;
     startDate: string;
 };
 
 export type EventEditionPayload = {
     endDate?: Date;
     name?: string;
-    public?: string;
+    public?: UserProfiles;
     startDate?: string;
 };
 
@@ -60,15 +63,8 @@ export type UserPayload = {
     password: string;
 };
 
-export enum UserProfile {
-    ADM = 'ADM',
-    PARENTS = 'PARENTS',
-    PROFESSOR = 'PROFESSOR',
-    STUDENT = 'STUDENT'
-}
-
 export type UserResponse = {
-    profile: UserProfile;
+    profile: UserProfiles;
     token: string;
 }
 
@@ -82,7 +78,7 @@ export const deleteEvent = async (id: string | number, token: string): Promise<A
     return data
 };
 
-export const getEvents = async (profile?: UserProfile): Promise<EventsResponse[]> => {
+export const getEvents = async (profile?: UserProfiles): Promise<EventsResponse[]> => {
     const { data } = await api.get<ApiResponse<EventsResponse[]>>(`${BASE_URL_EVENTS}?public=${profile}`);
 
     return data.data;
