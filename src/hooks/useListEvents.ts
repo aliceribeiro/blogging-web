@@ -1,4 +1,4 @@
-import type { EventsResponse } from "../api";
+import type { EventsResponse, UserProfile } from "../api";
 
 import { useState } from 'react';
 
@@ -10,10 +10,10 @@ export const useListEvents = () => {
     const [eventsList, setEventsList] = useState<Array<EventsResponse>>([])
     const [requestStatus, setRequestStatus] = useState<RequestStatus>('idle')
 
-    const getEventsList = async () => {
+    const getEventsList = async (profile: UserProfile) => {
         setRequestStatus('loading');
         try {
-            const data = await getEvents();
+            const data = await getEvents(profile);
             setEventsList(data);
             setRequestStatus('success');
         } catch {

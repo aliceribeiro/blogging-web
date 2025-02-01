@@ -19,7 +19,7 @@ export type EventsResponse = {
     endDate: Date;
     name: string;
     public: string;
-    startDate: string;
+    startDate: Date;
     updatedAt: Date;
 };
 
@@ -60,6 +60,13 @@ export type UserPayload = {
     password: string;
 };
 
+export enum UserProfile {
+    ADM = 'ADM',
+    PARENTS = 'PARENTS',
+    PROFESSOR = 'PROFESSOR',
+    STUDENT = 'STUDENT'
+}
+
 const BASE_URL_EVENTS = '/events';
 const BASE_URL_POSTS = '/posts';
 const BASE_URL_USERS = '/users';
@@ -74,8 +81,8 @@ export const deleteEvent = async (id: string | number, token: string): Promise<A
     return data
 };
 
-export const getEvents = async (): Promise<EventsResponse[]> => {
-    const { data } = await api.get<ApiResponse<EventsResponse[]>>(BASE_URL_EVENTS);
+export const getEvents = async (profile: UserProfile): Promise<EventsResponse[]> => {
+    const { data } = await api.get<ApiResponse<EventsResponse[]>>(`${BASE_URL_EVENTS}?public=${profile}`);
 
     return data.data;
 };
