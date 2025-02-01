@@ -82,7 +82,7 @@ export const deleteEvent = async (id: string | number, token: string): Promise<A
     return data
 };
 
-export const getEvents = async (profile: UserProfile): Promise<EventsResponse[]> => {
+export const getEvents = async (profile?: UserProfile): Promise<EventsResponse[]> => {
     const { data } = await api.get<ApiResponse<EventsResponse[]>>(`${BASE_URL_EVENTS}?public=${profile}`);
 
     return data.data;

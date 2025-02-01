@@ -3,27 +3,28 @@ import { useEffect, useState } from "react";
 import { UserProfile } from "../api";
 
 export const usePermission = () => {
-    const [profile, setProfile] = useState<UserProfile | null>(null);
     const [token, setToken] = useState('');
+    const [userProfile, setUserProfile] = useState<UserProfile | undefined>(undefined);
 
     const hasPermission = Boolean(token);
 
     useEffect(() => {
-        const userProfile = window.localStorage.getItem('userProfile') as UserProfile;
+        const profile = window.localStorage.getItem('userProfile') as UserProfile;
         const userToken = window.localStorage.getItem('userToken');
+
+        if (profile) {
+            setUserProfile(userProfile)
+        }
 
         if (userToken) {
             setToken(`Bearer ${window.localStorage.getItem('userToken')}`);
         }
-
-        if (userProfile) {
-            setProfile(userProfile)
-        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return {
         hasPermission,
-        profile,
         token,
+        userProfile,
     };
 };

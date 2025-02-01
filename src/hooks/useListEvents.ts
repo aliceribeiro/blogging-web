@@ -10,7 +10,7 @@ export const useListEvents = () => {
     const [eventsList, setEventsList] = useState<Array<EventsResponse>>([])
     const [requestStatus, setRequestStatus] = useState<RequestStatus>('idle')
 
-    const getEventsList = async (profile: UserProfile) => {
+    const getEventsList = async (profile?: UserProfile) => {
         setRequestStatus('loading');
         try {
             const data = await getEvents(profile);
