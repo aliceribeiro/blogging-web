@@ -33,5 +33,5 @@ export const Modal = ({
                 {actions ? <div className="modal-footer border-0">{actions}</div> : null}
             </div>
         </div>
-    </div >
+    </div>
 );

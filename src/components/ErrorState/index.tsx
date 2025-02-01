@@ -15,5 +15,5 @@ export const ErrorState = ({ onTryAgain }: ErrorStateProps) => (
             Não conseguimos efetuar a busca. Por favor, tente novamente.
         </Typography>
         <Button onClick={onTryAgain}>Tentar novamente</Button>
-    </FeedbackWrapper >
+    </FeedbackWrapper>
 );

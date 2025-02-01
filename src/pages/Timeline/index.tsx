@@ -59,7 +59,7 @@ const Timeline = () => {
             </section>
           )}
       </PageContentWrapper>
-    </PageLayout >
+    </PageLayout>
   );
 };
 

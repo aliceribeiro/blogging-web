@@ -8,6 +8,6 @@ export const Spinner = () => (
             role="progressbar"
         >
             <span className="visually-hidden">Carregando...</span>
-        </div >
-    </FeedbackWrapper >
+        </div>
+    </FeedbackWrapper>
 );

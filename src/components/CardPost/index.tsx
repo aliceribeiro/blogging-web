@@ -40,6 +40,6 @@ export const CardPost = ({ post }: CardPostProps) => {
                     </div>
                 </div>
             </div>
-        </div >
+        </div>
     );
 };

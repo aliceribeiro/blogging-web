@@ -73,7 +73,7 @@ const FormCreatePost = () => {
                     </Button>
                 </div>
             </Form>
-        </PageLayout >
+        </PageLayout>
     );
 };
 

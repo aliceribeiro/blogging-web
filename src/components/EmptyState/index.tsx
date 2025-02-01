@@ -14,5 +14,5 @@ export const EmptyState = ({ description, title }: EmptyStateProps) => (
         <Typography>
             {description}
         </Typography>
-    </FeedbackWrapper >
+    </FeedbackWrapper>
 );
