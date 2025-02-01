@@ -1,5 +1,9 @@
 import { api } from "./config";
 
+const BASE_URL_EVENTS = '/events';
+const BASE_URL_POSTS = '/posts';
+const BASE_URL_USERS = '/users';
+
 type ApiResponse<T> = {
     data: T;
     message: string;
@@ -7,10 +11,6 @@ type ApiResponse<T> = {
 };
 
 export type ApiResponseDataUnknown = ApiResponse<Record<string, unknown>>;
-
-type Token = {
-    token: string;
-};
 
 export type EventsResponse = {
     id: string;
@@ -67,9 +67,10 @@ export enum UserProfile {
     STUDENT = 'STUDENT'
 }
 
-const BASE_URL_EVENTS = '/events';
-const BASE_URL_POSTS = '/posts';
-const BASE_URL_USERS = '/users';
+export type UserResponse = {
+    profile: UserProfile;
+    token: string;
+}
 
 export const deleteEvent = async (id: string | number, token: string): Promise<ApiResponseDataUnknown> => {
     const { data } = await api.delete<ApiResponseDataUnknown>(`${BASE_URL_EVENTS}/${id}`, {
@@ -107,7 +108,6 @@ export const putEvent = async (id: string | number, token: string, payload: Even
     return data;
 };
 
-// Posts
 export const deletePost = async (id: string | number, token: string): Promise<ApiResponseDataUnknown> => {
     const { data } = await api.delete<ApiResponseDataUnknown>(`${BASE_URL_POSTS}/${id}`, {
         headers: {
@@ -155,9 +155,8 @@ export const putPost = async (id: string | number, token: string, payload: PostP
     return data;
 };
 
-// Users
-export const postLogin = async (payload: UserPayload): Promise<Token> => {
-    const { data } = await api.post<ApiResponse<Token>>(`${BASE_URL_USERS}/login`, payload);
+export const postLogin = async (payload: UserPayload): Promise<UserResponse> => {
+    const { data } = await api.post<ApiResponse<UserResponse>>(`${BASE_URL_USERS}/login`, payload);
 
     return data.data;
 };
