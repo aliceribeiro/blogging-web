@@ -12,9 +12,39 @@ type Token = {
     token: string;
 };
 
+export type EventsResponse = {
+    id: string;
+    createdAt: Date;
+    createdBy: string;
+    endDate: Date;
+    name: string;
+    public: string;
+    startDate: string;
+    updatedAt: Date;
+};
+
+export type EventPayload = {
+    endDate: Date;
+    name: string;
+    public: string;
+    startDate: string;
+};
+
+export type EventEditionPayload = {
+    endDate?: Date;
+    name?: string;
+    public?: string;
+    startDate?: string;
+};
+
 export type PostPayload = {
     title: string;
     content: string;
+};
+
+export type PostEditionPayload = {
+    title?: string;
+    content?: string;
 };
 
 export type PostResponse = {
@@ -30,9 +60,47 @@ export type UserPayload = {
     password: string;
 };
 
+const BASE_URL_EVENTS = '/events';
 const BASE_URL_POSTS = '/posts';
 const BASE_URL_USERS = '/users';
 
+export const deleteEvent = async (id: string | number, token: string): Promise<ApiResponseDataUnknown> => {
+    const { data } = await api.delete<ApiResponseDataUnknown>(`${BASE_URL_EVENTS}/${id}`, {
+        headers: {
+            'authorization': token,
+        },
+    });
+
+    return data
+};
+
+export const getEvents = async (): Promise<EventsResponse[]> => {
+    const { data } = await api.get<ApiResponse<EventsResponse[]>>(BASE_URL_EVENTS);
+
+    return data.data;
+};
+
+export const postEvent = async (token: string, payload: EventPayload): Promise<ApiResponseDataUnknown> => {
+    const { data } = await api.post<ApiResponseDataUnknown>(BASE_URL_EVENTS, payload, {
+        headers: {
+            'authorization': token,
+        },
+    });
+
+    return data;
+};
+
+export const putEvent = async (id: string | number, token: string, payload: EventEditionPayload): Promise<ApiResponseDataUnknown> => {
+    const { data } = await api.put<ApiResponseDataUnknown>(`${BASE_URL_EVENTS}/${id}`, payload, {
+        headers: {
+            'authorization': token,
+        },
+    });
+
+    return data;
+};
+
+// Posts
 export const deletePost = async (id: string | number, token: string): Promise<ApiResponseDataUnknown> => {
     const { data } = await api.delete<ApiResponseDataUnknown>(`${BASE_URL_POSTS}/${id}`, {
         headers: {
@@ -70,12 +138,6 @@ export const postPost = async (token: string, payload: PostPayload): Promise<Api
     return data;
 };
 
-export const postLogin = async (payload: UserPayload): Promise<Token> => {
-    const { data } = await api.post<ApiResponse<Token>>(`${BASE_URL_USERS}/login`, payload);
-
-    return data.data;
-};
-
 export const putPost = async (id: string | number, token: string, payload: PostPayload): Promise<ApiResponseDataUnknown> => {
     const { data } = await api.put<ApiResponseDataUnknown>(`${BASE_URL_POSTS}/${id}`, payload, {
         headers: {
@@ -84,4 +146,11 @@ export const putPost = async (id: string | number, token: string, payload: PostP
     });
 
     return data;
+};
+
+// Users
+export const postLogin = async (payload: UserPayload): Promise<Token> => {
+    const { data } = await api.post<ApiResponse<Token>>(`${BASE_URL_USERS}/login`, payload);
+
+    return data.data;
 };
