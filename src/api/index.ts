@@ -30,14 +30,14 @@ export type EventPayload = {
     endDate: Date;
     name: string;
     public: UserProfiles;
-    startDate: string;
+    startDate: Date;
 };
 
 export type EventEditionPayload = {
     endDate?: Date;
     name?: string;
     public?: UserProfiles;
-    startDate?: string;
+    startDate?: Date;
 };
 
 export type PostPayload = {
@@ -80,6 +80,12 @@ export const deleteEvent = async (id: string | number, token: string): Promise<A
 
 export const getEvents = async (profile?: UserProfiles): Promise<EventsResponse[]> => {
     const { data } = await api.get<ApiResponse<EventsResponse[]>>(`${BASE_URL_EVENTS}?public=${profile}`);
+
+    return data.data;
+};
+
+export const getEventById = async (id: string | number): Promise<EventsResponse> => {
+    const { data } = await api.get<ApiResponse<EventsResponse>>(`${BASE_URL_EVENTS}/${id}`);
 
     return data.data;
 };

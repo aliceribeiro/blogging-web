@@ -1,4 +1,4 @@
-import type { EventPayload } from "../api";
+import type { EventEditionPayload } from "../api";
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -17,7 +17,7 @@ export const useEditEvent = (id: string | number) => {
     const { token } = usePermission();
     const { setSnackbar } = useSnackbar();
 
-    const editEvent = async (data: EventPayload) => {
+    const editEvent = async (data: EventEditionPayload) => {
         setLoading(true);
         try {
             await putEvent(id, token, data);

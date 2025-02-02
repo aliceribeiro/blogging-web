@@ -9,7 +9,7 @@ import { UserProfiles } from "../../model/enums/UserProfiles";
 import { getFormFields } from "../../utils/getFormFields";
 import { MAX_CHAR_TITLE } from "../../utils/constants";
 
-export const FormEventSchema = yupObject({
+export const FormEditEventSchema = yupObject({
     endDate: yupDate().required('Campo obrigatório'),
     name: yupString()
         .required('Campo obrigatório')
@@ -27,6 +27,6 @@ export const FormEventSchema = yupObject({
     startDate: yupDate().required('Campo obrigatório'),
 }).required();
 
-export type EventFormValues = yupInferType<typeof FormEventSchema>;
+export type EditEventFormValues = yupInferType<typeof FormEditEventSchema>;
 
-export const EventFormFields: EventFormValues = getFormFields(FormEventSchema.fields);
+export const EditEventFormFields: EditEventFormValues = getFormFields(FormEditEventSchema.fields);
