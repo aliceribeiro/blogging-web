@@ -5,11 +5,22 @@ import {
     string as yupString
 } from "yup";
 
-import { UserProfiles } from "../../model/enums/UserProfiles";
 import { getFormFields } from "../../utils/getFormFields";
-import { MAX_CHAR_TITLE } from "../../utils/constants";
+import { MAX_CHAR_CONTENT, MAX_CHAR_TITLE } from "../../utils/constants";
 
 export const FormEventSchema = yupObject({
+    description: yupString()
+        .required('Campo obrigatório')
+        .test({
+            name: 'maxCharacters',
+            test: (value, ctx) => {
+                if (value.length > MAX_CHAR_CONTENT) {
+                    return ctx.createError({ message: `O número máximo de caracteres é ${MAX_CHAR_CONTENT}` })
+                }
+
+                return true
+            }
+        }),
     endDate: yupDate().required('Campo obrigatório'),
     name: yupString()
         .required('Campo obrigatório')
@@ -23,7 +34,6 @@ export const FormEventSchema = yupObject({
                 return true
             }
         }),
-    public: yupString().required('Campo obrigatório').oneOf(Object.values(UserProfiles)),
     startDate: yupDate().required('Campo obrigatório'),
 }).required();
 

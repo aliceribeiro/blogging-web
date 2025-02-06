@@ -7,13 +7,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Button } from "../../components/Button"
 import { Form } from "../../components/Form";
 import { FormDate } from "../../components/Form/FormDate";
-import { FormSelect } from "../../components/Form/FormSelect";
 import { FormSubmitButton } from "../../components/Form/FormSubmitButton";
+import { FormTextArea } from "../../components/Form/FormTextArea";
 import { FormTextField } from "../../components/Form/FormTextField";
 import { useEditEvent } from '../../hooks/useEditEvent';
 import { useEventDetails } from '../../hooks/useEventDetails';
-import { useSelectOptionsFromEnum } from "../../hooks/useSelectOptionsFromEnum";
-import { UserProfilesLabels } from "../../model/enums/UserProfiles";
 import { PageContentWrapper } from "../../templates/PageContentWrapper";
 import { PageLayout } from "../../templates/PageLayout";
 import { FormEditEventSchema, EditEventFormFields, EditEventFormValues } from "./FormEditEvent.schema";
@@ -31,13 +29,12 @@ const FormEditEvent = () => {
     } = useEventDetails(eventId);
 
     const defaultValues = useMemo(() => ({
+        description: event?.description,
         endDate: event?.endDate,
         name: event?.name,
-        public: event?.public,
         startDate: event?.startDate
     }), [event]);
 
-    const viewers = useSelectOptionsFromEnum(UserProfilesLabels);
     const { editEvent, loading } = useEditEvent(eventId);
     const methods = useForm<EditEventFormValues>({
         defaultValues: defaultValues,
@@ -73,19 +70,6 @@ const FormEditEvent = () => {
             >
                 <Form id={eventId} methods={methods} onSubmit={handleSubmit(handleSaveEventEdition)}>
                     <section className="form-edit-event">
-                        <FormTextField
-                            fieldName={EditEventFormFields.name}
-                            label="Evento"
-                            placeholder="Nome do evento"
-                            srLabel="Campo para inserir o nome do evento"
-                        />
-                        <FormSelect
-                            fieldName={EditEventFormFields.public}
-                            form={eventId}
-                            label="Público alvo"
-                            options={viewers}
-                            srLabel="Campo para escolher quem pode visualizar o evento"
-                        />
                         <FormDate
                             fieldName={String(EditEventFormFields.startDate)}
                             form={eventId}
@@ -95,6 +79,18 @@ const FormEditEvent = () => {
                             fieldName={String(EditEventFormFields.endDate)}
                             form={eventId}
                             label="Data fim"
+                        />
+                        <FormTextField
+                            fieldName={EditEventFormFields.name}
+                            label="Evento"
+                            placeholder="Nome do evento"
+                            srLabel="Campo para inserir o nome do evento"
+                        />
+                        <FormTextArea
+                            fieldName={EditEventFormFields.description}
+                            label="Conteúdo"
+                            placeholder="Digite aqui os detalhes do evento que você deseja criar."
+                            srLabel="Campo para inserir a descrição do evento"
                         />
                     </section>
                     <div className="d-flex gap-3 justify-content-end mt-5">

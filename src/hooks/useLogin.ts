@@ -16,8 +16,7 @@ export const useLogin = () => {
     const loginUser = async ({ username, password }: UserPayload) => {
         setLoading(true);
         try {
-            const { profile, token } = await postLogin({ username, password });
-            window.localStorage.setItem('userProfile', profile);
+            const { token } = await postLogin({ username, password });
             window.localStorage.setItem('userToken', token);
             navigate(Paths.BASE);
         } catch {
