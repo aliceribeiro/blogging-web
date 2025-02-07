@@ -71,10 +71,11 @@ type IsBetweenParams = {
 // 4: []
 const addDaysWithoutEvents = (daysWithEvents: Record<number, Array<EventsWithWeekDate>>, allDays: Week)
     : Record<number, Array<EventsWithWeekDate>> => {
-    const daysOutOfTheList = allDays.filter((day) => daysWithEvents[day])
-    console.log(daysWithEvents, allDays)
-    console.log(daysOutOfTheList)
+    const daysOutOfTheList = allDays.filter((day) => daysWithEvents[day.day])
+    console.log(daysWithEvents, allDays);
+    console.log(daysOutOfTheList);
 
+    return daysWithEvents;
 };
 
 const isBetween = ({ date, endDate, startDate }: IsBetweenParams) => {
@@ -86,7 +87,7 @@ const isBetween = ({ date, endDate, startDate }: IsBetweenParams) => {
 };
 
 const groupByDate = (arr: Array<EventsWithWeekDate>): Record<number, Array<EventsWithWeekDate>> =>
-    arr.reduce((acc, item) => {
+    arr.reduce((acc: Record<number, Array<EventsWithWeekDate>>, item) => {
         const key = item.date;
 
         if (!acc[key]) {
@@ -100,7 +101,7 @@ const groupByDate = (arr: Array<EventsWithWeekDate>): Record<number, Array<Event
 
 type EventsWithWeekDate = EventsResponse & { date: number };
 
-const mapEvents = ({ events, weekDays }: MapEventsParams): Record<number, EventsWithWeekDate> => {
+const mapEvents = ({ events, weekDays }: MapEventsParams): Record<number, EventsWithWeekDate[]> => {
     const result: Array<EventsWithWeekDate> = [];
 
     events.forEach((item) =>
