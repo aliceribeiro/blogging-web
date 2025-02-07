@@ -1,5 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 
+import Calendar from "../pages/Calendar";
+import FormCreateEvent from "../pages/FormCreateEvent";
 import FormCreatePost from "../pages/FormCreatePost";
 import FormEditPost from "../pages/FormEditPost";
 import Login from "../pages/Login";
@@ -13,9 +15,29 @@ import { BasePaths, Paths } from "./paths";
 const router = createBrowserRouter(
   [
     {
-      path: Paths.BASE,
+      path: Paths.CALENDAR,
       index: true,
-      element: withProviders(<Timeline />)(),
+      element: withProviders(<Calendar />)(),
+      errorElement: <ErrorBoundary />,
+    },
+    {
+      path: Paths.CREATE_EVENT,
+      element: withProviders(<FormCreateEvent />)(),
+      errorElement: <ErrorBoundary />,
+    },
+    {
+      path: Paths.CREATE_POST,
+      element: withProviders(<FormCreatePost />)(),
+      errorElement: <ErrorBoundary />,
+    },
+    {
+      path: `${BasePaths.EDIT_EVENT}/:postId`,
+      element: withProviders(<FormEditPost />)(),
+      errorElement: <ErrorBoundary />,
+    },
+    {
+      path: `${BasePaths.EDIT_POST}/:postId`,
+      element: withProviders(<FormEditPost />)(),
       errorElement: <ErrorBoundary />,
     },
     {
@@ -29,13 +51,9 @@ const router = createBrowserRouter(
       errorElement: <ErrorBoundary />,
     },
     {
-      path: Paths.CREATE_POST,
-      element: withProviders(<FormCreatePost />)(),
-      errorElement: <ErrorBoundary />,
-    },
-    {
-      path: `${BasePaths.EDIT_POST}/:postId`,
-      element: withProviders(<FormEditPost />)(),
+      path: Paths.BASE,
+      index: true,
+      element: withProviders(<Timeline />)(),
       errorElement: <ErrorBoundary />,
     },
     {

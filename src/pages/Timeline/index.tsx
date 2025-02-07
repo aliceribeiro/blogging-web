@@ -40,7 +40,7 @@ const Timeline = () => {
   }, []);
 
   return (
-    <PageLayout showCreatePostButton={hasPermission} showNavbar title="Linha do tempo">
+    <PageLayout showCalendarButton showCreatePostButton={hasPermission} showNavbar title="Linha do tempo">
       <FormSearch
         id="search-post"
         onSubmit={handleSubmitSearch}

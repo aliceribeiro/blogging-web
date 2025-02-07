@@ -1,0 +1,17 @@
+.calendar-day-cell {
+    border: '1px solid gray';
+    padding: 12px;
+}
+
+.calendar-header-cell {
+    border: '1px solid gray';
+    width: 96px;
+    text-align: center;
+}
+
+.calendar-header-cell-content {
+    display: 'flex';
+    flex-direction: 'column';
+    align-items: 'center';
+    padding: 12px;
+}

@@ -10,16 +10,20 @@ import { useSnackbar } from "../../hooks/useSnackbar";
 import { Paths } from "../../routes/paths";
 
 type PageLayoutProps = PropsWithChildren<{
-  title?: string;
+  showCreateCalendarButton?: boolean;
+  showCalendarButton?: boolean;
   showCreatePostButton?: boolean;
   showNavbar?: boolean;
+  title?: string;
 }>;
 
 export const PageLayout = ({
   children,
-  title,
+  showCalendarButton = false,
+  showCreateCalendarButton = false,
   showCreatePostButton = false,
   showNavbar = false,
+  title,
 }: PageLayoutProps) => {
   const navigate = useNavigate();
   const { snackbar } = useSnackbar();
@@ -34,9 +38,17 @@ export const PageLayout = ({
               {title}
             </Typography>
           )}
-          {showCreatePostButton && <Button onClick={() => navigate(Paths.CREATE_POST)} variant="primary">
-            Criar nova publicação
-          </Button>}
+          <section>
+            {showCreatePostButton && <Button onClick={() => navigate(Paths.CREATE_POST)} variant="primary">
+              Criar nova publicação
+            </Button>}
+            {showCalendarButton && <Button onClick={() => navigate(Paths.CALENDAR)} variant="primary">
+              Agenda
+            </Button>}
+            {showCreateCalendarButton && <Button onClick={() => navigate(Paths.CREATE_EVENT)} variant="primary">
+              Criar novo evento
+            </Button>}
+          </section>
         </header>
         <section className="row justify-content-center">{children}</section>
         <Snackbar

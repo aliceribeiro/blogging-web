@@ -4,6 +4,8 @@ const getTypographyVariant = (variant: string): string => {
     switch (variant) {
         case 'paragraph-xsmall-regular':
             return 'fs-6 text fw-normal';
+        case 'paragraph-xsmall-medium':
+            return 'fs-6 text fw-medium';
         case 'paragraph-sm-regular':
             return 'fs-5 text fw-normal';
         case 'paragraph-sm-medium':
@@ -25,7 +27,7 @@ type TypographyProps = PropsWithChildren<{
     className?: string
     component?: AriaRole
     variant?:
-    'paragraph-xsmall-regular' | 'paragraph-sm-regular' | 'paragraph-sm-medium' |
+    'paragraph-xsmall-regular' | 'paragraph-xsmall-medium' | 'paragraph-sm-regular' | 'paragraph-sm-medium' |
     'paragraph-lg-regular' | 'subtitle-medium' | 'subtitle-bold' | 'title-bold'
 }>
 
